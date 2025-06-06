@@ -1,6 +1,5 @@
-
 import { useEffect, useState } from "react";
-import { Mail, Linkedin, Download, Phone, ExternalLink, Menu, X } from "lucide-react";
+import { Mail, Linkedin, Download, Phone, ExternalLink, Menu, X, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -11,7 +10,7 @@ const Index = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["hero", "about", "skills", "experience", "projects", "education", "contact"];
+      const sections = ["hero", "about", "skills", "experience", "projects", "education", "blog", "contact"];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -113,23 +112,58 @@ const Index = () => {
   const projects = [
     {
       title: "AWS Textract Pipeline for Clinical Documents",
-      description: "Used Lambda and Textract to extract structured data from scanned lab reports and discharge summaries. Resulted in 60% reduction in manual entry workload.",
-      technologies: ["AWS Lambda", "Textract", "Python", "S3"]
+      problem: "Manual data entry from scanned medical documents was time-consuming and error-prone, creating bottlenecks in clinical workflows.",
+      solution: "Built automated pipeline using AWS Lambda, Textract, and Python to extract structured data from lab reports and discharge summaries.",
+      outcome: "Achieved 60% reduction in manual entry workload and improved data accuracy by 35%.",
+      technologies: ["AWS Lambda", "Textract", "Python", "S3", "Airflow"]
     },
     {
       title: "Production-Ready ML Features for Early Warning System",
-      description: "Collaborated with ML team to build real-time features in Snowflake and dbt for patient deterioration prediction. Improved model deployment speed by 40%.",
-      technologies: ["Snowflake", "dbt", "Python", "ML Pipeline"]
+      problem: "ML team needed real-time patient deterioration features but lacked scalable feature engineering infrastructure.",
+      solution: "Developed real-time feature pipeline in Snowflake and dbt with MLflow integration for patient monitoring models.",
+      outcome: "Improved model deployment speed by 40% and enabled 24/7 patient risk scoring for 10,000+ patients.",
+      technologies: ["Snowflake", "dbt", "Python", "MLflow", "Real-time Pipeline"]
     },
     {
       title: "Snowflake Cost Optimization Initiative",
-      description: "Tuned warehouse sizes, query performance, and scheduling logic to reduce monthly compute costs by 25%.",
-      technologies: ["Snowflake", "SQL", "Performance Tuning"]
+      problem: "Monthly Snowflake compute costs were escalating due to inefficient warehouse sizing and query patterns.",
+      solution: "Implemented warehouse auto-scaling, query optimization, and workload scheduling using performance monitoring and tuning.",
+      outcome: "Reduced monthly compute costs by 25% while maintaining 99.9% query performance SLA.",
+      technologies: ["Snowflake", "SQL Optimization", "Performance Tuning", "Cost Management"]
     },
     {
-      title: "Public Health Dashboard (Power BI)",
-      description: "Developed real-time analytics dashboard for Medicaid directors to track claims, usage trends, and program KPIs.",
-      technologies: ["Power BI", "SQL", "Python", "Data Visualization"]
+      title: "Public Health Dashboard for Policy Makers",
+      problem: "Medicaid directors needed real-time visibility into claims trends and program KPIs for policy decisions.",
+      solution: "Built comprehensive Power BI dashboard with automated data refresh from multiple healthcare data sources.",
+      outcome: "Enabled data-driven policy decisions affecting 500K+ Medicaid beneficiaries and reduced reporting time by 80%.",
+      technologies: ["Power BI", "SQL Server", "Python", "Healthcare Analytics"]
+    }
+  ];
+
+  const blogPosts = [
+    {
+      title: "How to Productionize Machine Learning Pipelines",
+      description: "Best practices for transitioning ML models from experimentation to production-ready systems in healthcare environments.",
+      readTime: "8 min read",
+      category: "Machine Learning"
+    },
+    {
+      title: "ETL Best Practices for Healthcare Data",
+      description: "Essential patterns and strategies for building HIPAA-compliant data pipelines that handle sensitive medical information.",
+      readTime: "6 min read",
+      category: "Data Engineering"
+    },
+    {
+      title: "Data Modeling with SCD Type 2 in Snowflake",
+      description: "Complete guide to implementing Slowly Changing Dimensions for historical patient tracking in cloud data warehouses.",
+      readTime: "10 min read",
+      category: "Data Warehousing"
+    },
+    {
+      title: "Cost Optimization Strategies for Cloud Data Platforms",
+      description: "Proven techniques to reduce cloud compute costs while maintaining performance and reliability in data workloads.",
+      readTime: "7 min read",
+      category: "Cloud Computing"
     }
   ];
 
@@ -139,6 +173,7 @@ const Index = () => {
     { name: "Experience", href: "experience" },
     { name: "Projects", href: "projects" },
     { name: "Education", href: "education" },
+    { name: "Articles", href: "blog" },
     { name: "Contact", href: "contact" }
   ];
 
@@ -330,13 +365,13 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Projects Section */}
+      {/* Featured Projects Section */}
       <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
             Featured Projects
           </h2>
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid lg:grid-cols-2 gap-8">
             {projects.map((project, index) => (
               <Card key={index} className="bg-slate-800/50 border-slate-700 hover:bg-slate-800/70 transition-all duration-300 hover:shadow-xl">
                 <CardHeader>
@@ -346,8 +381,19 @@ const Index = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <p className="text-slate-300">{project.description}</p>
-                  <div className="flex flex-wrap gap-2">
+                  <div>
+                    <h4 className="text-sm font-semibold text-cyan-400 mb-2">Problem:</h4>
+                    <p className="text-slate-300 text-sm">{project.problem}</p>
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-semibold text-cyan-400 mb-2">Solution:</h4>
+                    <p className="text-slate-300 text-sm">{project.solution}</p>
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-semibold text-cyan-400 mb-2">Outcome:</h4>
+                    <p className="text-slate-300 text-sm font-medium">{project.outcome}</p>
+                  </div>
+                  <div className="flex flex-wrap gap-2 pt-2">
                     {project.technologies.map((tech) => (
                       <Badge key={tech} variant="outline" className="border-cyan-500 text-cyan-400">
                         {tech}
@@ -384,8 +430,43 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Articles & Insights Section */}
+      <section id="blog" className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+            Articles & Insights
+          </h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            {blogPosts.map((post, index) => (
+              <Card key={index} className="bg-slate-800/50 border-slate-700 hover:bg-slate-800/70 transition-all duration-300 hover:shadow-xl cursor-pointer">
+                <CardHeader>
+                  <div className="flex items-start justify-between">
+                    <div className="space-y-2">
+                      <Badge variant="outline" className="border-blue-500 text-blue-400 text-xs">
+                        {post.category}
+                      </Badge>
+                      <CardTitle className="text-lg text-blue-400 flex items-start gap-2">
+                        <BookOpen className="h-5 w-5 mt-0.5 flex-shrink-0" />
+                        {post.title}
+                      </CardTitle>
+                    </div>
+                  </div>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  <p className="text-slate-300 text-sm leading-relaxed">{post.description}</p>
+                  <div className="flex items-center justify-between">
+                    <span className="text-slate-400 text-xs">{post.readTime}</span>
+                    <ExternalLink className="h-4 w-4 text-slate-400" />
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Contact Section */}
-      <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8">
+      <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-800/30">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold mb-12 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
             Get In Touch
