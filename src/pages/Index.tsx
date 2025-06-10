@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { Mail, Linkedin, Download, Phone, ExternalLink, Menu, X, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -49,62 +50,58 @@ const Index = () => {
     "Governance": ["Great Expectations", "PII Masking", "RBAC", "HIPAA", "SOC 2"],
     "Healthcare Standards": ["HL7", "FHIR"],
     "Modeling": ["Star Schema", "SCD Type 2", "Dimensional Modeling"],
-    "Agile Tools": ["Jira", "Scrum"]
+    "Agile Tools": ["Jira", "Scrum"],
+    "Certifications": ["AWS Solution Architect Associate"]
   };
 
   const experiences = [
     {
-      company: "Staff Medical Systems",
+      company: "One Staff Medical",
       role: "Senior Data Engineer",
       period: "May 2021 – Present",
+      location: "Omaha, NE",
       achievements: [
-        "Designed scalable ETL pipelines using Airflow and Python, processing over 400M records monthly",
-        "Developed SCD Type 2 models in Snowflake for historical patient tracking",
-        "Built document ingestion workflows with AWS Textract for unstructured medical records",
-        "Created Tableau dashboards for hospital performance metrics",
-        "Reduced Snowflake compute cost by 25% via warehouse optimization",
-        "Led compliance efforts with HIPAA and SOC 2 controls"
+        "Designed and managed scalable ETL pipelines using Apache Airflow and Python to integrate data from ATS, HRIS, and payroll systems",
+        "Modeled Snowflake data marts with SCD Type 2 logic to enable historical tracking and compliance reporting",
+        "Automated credentialing workflows and implemented data validation with dbt and Great Expectations",
+        "Migrated SQL Server reports to Snowflake and AWS S3, enhancing reliability and scalability",
+        "Reduced Snowflake compute costs through performance tuning and warehouse optimization",
+        "Mentored junior engineers and enforced HIPAA and SOC 2 compliance via secure data practices"
       ]
     },
     {
-      company: "State of Nebraska, DHHS",
+      company: "Republic Services",
       role: "Data Analyst",
       period: "Feb 2019 – Apr 2021",
+      location: "Phoenix, AZ",
       achievements: [
-        "Analyzed Medicaid claims and program data using SQL and Power BI",
-        "Automated recurring health reports and extracts using Python",
-        "Integrated Census and CDC data for public health research",
-        "Conducted time-series and geospatial analytics for epidemiology"
+        "Built ETL pipelines with Apache Airflow and Python to consolidate fleet and operations data from 500+ locations",
+        "Developed BigQuery data marts supporting sustainability reporting and billing reconciliation",
+        "Created Power BI dashboards to monitor recycling compliance and route efficiency",
+        "Automated invoice processing with OCR pipelines using Google Vision API",
+        "Optimized reporting performance using partitioned tables, materialized views, and dbt models"
       ]
     },
     {
       company: "Finovia Solutions",
       role: "Data Analyst",
       period: "Jun 2016 – Dec 2018",
+      location: "Hyderabad, India",
       achievements: [
-        "Automated compliance and investor reporting using Python/MySQL",
-        "Developed Tableau dashboards for portfolio analytics",
-        "Performed RFM segmentation and contributed to credit risk modeling"
+        "Automated investor and compliance reporting using Python and MySQL, cutting turnaround time by 90%",
+        "Built Tableau dashboards for financial performance tracking and investor relations",
+        "Enhanced ETL pipeline efficiency by 45% through SQL and job runtime optimization"
       ]
     },
     {
-      company: "Techlynx Systems",
-      role: "BI Analyst",
-      period: "Jan 2016 – Jun 2016",
+      company: "Techlynx Systems / Hexaware Digital Insights",
+      role: "Data Analyst",
+      period: "2014 – 2016",
+      location: "India",
       achievements: [
-        "Built self-service dashboards in Tableau for sales and finance",
-        "Automated Excel reports with VBA and SQL",
-        "Analyzed churn trends and upsell opportunities"
-      ]
-    },
-    {
-      company: "Hexaware",
-      role: "Junior Data Analyst",
-      period: "Jul 2014 – May 2016",
-      achievements: [
-        "Supported SSIS-based ETL for manufacturing and retail clients",
-        "Built Excel/Power BI dashboards for supply chain KPIs",
-        "Helped migrate legacy reports to secure, interactive dashboards"
+        "Developed dashboards in Tableau and Power BI for finance and sales analytics",
+        "Automated recurring reports with SQL, Power Query, and VBA",
+        "Contributed to ETL development using SSIS and CRM/ticketing system integrations"
       ]
     }
   ];
@@ -251,14 +248,6 @@ const Index = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button 
                 size="lg" 
-                className="bg-blue-600 hover:bg-blue-700 text-white border-none shadow-lg hover:shadow-xl transition-all duration-300"
-                onClick={() => window.open('#', '_blank')}
-              >
-                <Download className="mr-2 h-5 w-5" />
-                Download Resume
-              </Button>
-              <Button 
-                size="lg" 
                 variant="outline"
                 className="border-slate-600 text-slate-300 hover:bg-slate-800 hover:text-white transition-all duration-300"
                 onClick={() => window.open('mailto:guntreddideepaksai@gmail.com')}
@@ -342,7 +331,9 @@ const Index = () => {
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between">
                     <div>
                       <CardTitle className="text-xl text-blue-400">{exp.role}</CardTitle>
-                      <CardDescription className="text-lg text-slate-300 font-medium">{exp.company}</CardDescription>
+                      <CardDescription className="text-lg text-slate-300 font-medium">
+                        {exp.company} - {exp.location}
+                      </CardDescription>
                     </div>
                     <Badge variant="outline" className="border-blue-500 text-blue-400 mt-2 md:mt-0">
                       {exp.period}
