@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { Mail, Linkedin, Download, Phone, ExternalLink, Menu, X, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -94,14 +93,25 @@ const Index = () => {
       ]
     },
     {
-      company: "Techlynx Systems / Hexaware Digital Insights",
-      role: "Data Analyst",
-      period: "2014 – 2016",
-      location: "India",
+      company: "Techlynx Systems",
+      role: "Business Intelligence Analyst",
+      period: "Jan 2016 – Jun 2016",
+      location: "Hyderabad, India",
       achievements: [
-        "Developed dashboards in Tableau and Power BI for finance and sales analytics",
-        "Automated recurring reports with SQL, Power Query, and VBA",
-        "Contributed to ETL development using SSIS and CRM/ticketing system integrations"
+        "Developed Tableau dashboards for finance and sales teams, enabling self-service reporting",
+        "Automated recurring reports using SQL, Power Query, and VBA, reducing manual effort by 50%",
+        "Contributed to CRM and ticketing system data ingestion and early-stage data lake design"
+      ]
+    },
+    {
+      company: "Hexaware Digital Insights",
+      role: "Junior Data Analyst",
+      period: "Jul 2014 – May 2016",
+      location: "Pune, India",
+      achievements: [
+        "Supported ETL development using SQL Server Integration Services (SSIS) for manufacturing and retail clients",
+        "Created Excel and Power BI dashboards for executive reporting and performance tracking",
+        "Migrated legacy reports and implemented Row-Level Security (RLS) in Power BI dashboards"
       ]
     }
   ];
