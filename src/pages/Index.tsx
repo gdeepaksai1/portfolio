@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { Mail, Linkedin, Download, Phone, ExternalLink, Menu, X, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -57,61 +58,82 @@ const Index = () => {
     {
       company: "One Staff Medical",
       role: "Senior Data Engineer",
-      period: "May 2021 – Present",
+      period: "June 2023 – Present",
       location: "Omaha, NE",
       achievements: [
-        "Designed and managed scalable ETL pipelines using Apache Airflow and Python to integrate data from ATS, HRIS, and payroll systems",
-        "Modeled Snowflake data marts with SCD Type 2 logic to enable historical tracking and compliance reporting",
-        "Automated credentialing workflows and implemented data validation with dbt and Great Expectations",
-        "Migrated SQL Server reports to Snowflake and AWS S3, enhancing reliability and scalability",
-        "Reduced Snowflake compute costs through performance tuning and warehouse optimization",
-        "Mentored junior engineers and enforced HIPAA and SOC 2 compliance via secure data practices"
+        "Built predictive ML models (CatBoost, logistic regression) to forecast candidate fall-offs, placement likelihood, and onboarding delays using features engineered with dbt and Snowflake",
+        "Deployed ML models using MLflow and Docker, with real-time inference integrated into recruiter dashboards through RESTful APIs",
+        "Used SHAP and LIME to generate interpretable recruiter feedback on model-based candidate prioritization scores",
+        "Designed scalable PySpark and Airflow ETL pipelines to ingest and transform recruiter activity, compliance data, and ATS events from Bullhorn and internal systems",
+        "Modeled SCD Type 2 data marts in Snowflake for tracking assignment history, licensing timelines, and onboarding milestones",
+        "Created Tableau dashboards to visualize fill rate trends, recruiter performance rankings, and ML-based candidate readiness scores",
+        "Built dbt models to compute candidate funnel metrics, recruiter velocity, and SLA adherence; integrated with Great Expectations for quality checks",
+        "Standardized compliance dashboards across 30+ U.S. states using DoH and state board datasets, with automated alerts for policy violations",
+        "Implemented HIPAA- and SOC 2-compliant RBAC across all data layers, using PII masking, access auditing, and column-level security in Snowflake",
+        "Optimized Snowflake compute spend by 25% through clustering, warehouse auto-suspend tuning, and query refactoring using EXPLAIN plans",
+        "Migrated legacy SSRS and SQL Server ETLs to modern AWS Glue, S3, and Airflow pipelines, enabling scalable reporting",
+        "Mentored junior engineers on CI/CD practices with GitHub Actions, feature store design, and modular pipeline development in Airflow"
       ]
     },
     {
       company: "Republic Services",
-      role: "Data Analyst",
-      period: "Feb 2019 – Apr 2021",
+      role: "Data Engineer",
+      period: "April 2021 – May 2023",
       location: "Phoenix, AZ",
       achievements: [
-        "Built ETL pipelines with Apache Airflow and Python to consolidate fleet and operations data from 500+ locations",
-        "Developed BigQuery data marts supporting sustainability reporting and billing reconciliation",
-        "Created Power BI dashboards to monitor recycling compliance and route efficiency",
-        "Automated invoice processing with OCR pipelines using Google Vision API",
-        "Optimized reporting performance using partitioned tables, materialized views, and dbt models"
+        "Built ML models using XGBoost and logistic regression to predict route delays and preempt vehicle breakdowns using GPS, weather, and telemetry data",
+        "Deployed ML APIs using GCP Cloud Run and Docker, integrating model outputs into operational dashboards used by dispatch teams",
+        "Visualized feature importance using SHAP to aid route managers in understanding delay risk drivers and recommend alternate dispatching",
+        "Orchestrated high-volume ETL jobs using Apache Airflow and PySpark, ingesting fuel usage, load weights, and site check-ins from 500+ waste facilities",
+        "Designed and optimized BigQuery marts using partitioned and clustered tables to support sustainability KPIs and customer billing reconciliation",
+        "Created dbt transformation layers to calculate driver compliance scores, fuel efficiency ratings, and maintenance alerts",
+        "Built Power BI dashboards tracking recycling rates, disposal trends, and SLA breaches with drill-downs by region and vehicle type",
+        "Automated invoice and manifest data extraction using Google Textract and OCR pipelines, reducing manual processing by 60%",
+        "Integrated ArcGIS APIs to enrich GPS records with geofences and custom routing zones for optimized pickups",
+        "Ensured SOC 2 audit readiness by embedding data lineage tracking, access logging, and field-level security controls into all BigQuery datasets"
       ]
     },
     {
-      company: "Finovia Solutions",
+      company: "Atlantic Union Bank",
       role: "Data Analyst",
-      period: "Jun 2016 – Dec 2018",
-      location: "Hyderabad, India",
+      period: "December 2019 – March 2021",
+      location: "Richmond, VA",
       achievements: [
-        "Automated investor and compliance reporting using Python and MySQL, cutting turnaround time by 90%",
-        "Built Tableau dashboards for financial performance tracking and investor relations",
-        "Enhanced ETL pipeline efficiency by 45% through SQL and job runtime optimization"
+        "Built customer segmentation models using logistic regression and K-Means in Scikit-learn to support credit scoring and personalized loan offers",
+        "Modeled MySQL marts to track customer behavior, product usage, and delinquency trends; used dimensional modeling for reporting layer",
+        "Developed Tableau dashboards for finance, risk, and investor relations, visualizing fund performance and credit risk KPIs",
+        "Automated monthly investor and regulatory reports using Python scripts, reducing turnaround from two days to under two hours",
+        "Collaborated with engineering to optimize ETL refresh schedules and streamline joins, improving SQL job runtimes by 45%",
+        "Integrated RBI exchange rate APIs and macroeconomic data feeds to support market exposure reporting",
+        "Designed standardized KPI templates using Seaborn and Matplotlib for internal and board-facing reports",
+        "Built data dictionaries and documented SQL logic and assumptions in version-controlled repos for audit traceability",
+        "Participated in quarterly audit prep by validating reporting logic and ensuring alignment with compliance thresholds"
       ]
     },
     {
-      company: "Techlynx Systems",
+      company: "Depot",
       role: "Business Intelligence Analyst",
-      period: "Jan 2016 – Jun 2016",
-      location: "Hyderabad, India",
+      period: "May 2018 – November 2019",
+      location: "Boca Raton, FL",
       achievements: [
-        "Developed Tableau dashboards for finance and sales teams, enabling self-service reporting",
-        "Automated recurring reports using SQL, Power Query, and VBA, reducing manual effort by 50%",
-        "Contributed to CRM and ticketing system data ingestion and early-stage data lake design"
+        "Designed Tableau dashboards with row-level security (RLS) to serve personalized insights to sales and finance leadership",
+        "Automated recurring Excel and SQL Server reports using Power Query, SQL, and VBA, reducing manual time by 50%",
+        "Conducted churn analysis using behavioral segmentation and created upsell opportunity reports tied to CRM and support ticket metadata",
+        "Partnered with engineers to define early-stage data lake ingestion strategy for CRM, ticketing, and web engagement datasets",
+        "Created visualizations in Power BI and Plotly to track revenue trends, seasonal patterns, and sales targets across teams",
+        "Contributed weekly to business reviews by delivering actionable insights on customer behavior and product performance"
       ]
     },
     {
-      company: "Hexaware Digital Insights",
-      role: "Junior Data Analyst",
-      period: "Jul 2014 – May 2016",
-      location: "Pune, India",
+      company: "Tvisha Technologies",
+      role: "Data Analytics Intern",
+      period: "April 2017 – May 2018",
+      location: "Hyderabad, India",
       achievements: [
-        "Supported ETL development using SQL Server Integration Services (SSIS) for manufacturing and retail clients",
-        "Created Excel and Power BI dashboards for executive reporting and performance tracking",
-        "Migrated legacy reports and implemented Row-Level Security (RLS) in Power BI dashboards"
+        "Supported ETL development using SQL Server Integration Services (SSIS) to consolidate data from ERP and CRM systems",
+        "Cleaned and validated client sales, returns, and supply chain datasets to support dashboards and executive summaries",
+        "Built Excel-based dashboards using Power Pivot and SQL connectors, enabling slice-and-dice reporting for business users",
+        "Assisted senior analysts in migrating static reports to Power BI, implementing RLS and basic drill-through functionality"
       ]
     }
   ];
@@ -155,8 +177,8 @@ const Index = () => {
       category: "Machine Learning"
     },
     {
-      title: "ETL Best Practices for Healthcare Data",
-      description: "Essential patterns and strategies for building HIPAA-compliant data pipelines that handle sensitive medical information.",
+      title: "Event-Driven Machine Learning Pipelines with Kafka and Feature Stores",
+      description: "Building real-time ML inference systems using Apache Kafka, feature stores, and event-driven architectures for low-latency predictions.",
       readTime: "6 min read",
       category: "Data Engineering"
     },
