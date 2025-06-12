@@ -1,4 +1,3 @@
-
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -15,14 +14,27 @@ const Index = () => {
             <h1 className="text-2xl font-bold text-slate-800">Deepak Sai Guntreddi</h1>
             <div className="flex items-center gap-4">
               <div className="flex gap-2">
-                <Button variant="ghost" size="sm">
-                  <Github className="w-4 h-4" />
+                <Button variant="ghost" size="sm" asChild>
+                  <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+                    <Github className="w-4 h-4" />
+                  </a>
                 </Button>
-                <Button variant="ghost" size="sm">
-                  <Linkedin className="w-4 h-4" />
+                <Button variant="ghost" size="sm" asChild>
+                  <a href="https://medium.com/@guntreddideepaksai/event-driven-machine-learning-pipelines-with-kafka-and-feature-stores-1cf94984bf76" target="_blank" rel="noopener noreferrer">
+                    <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/>
+                    </svg>
+                  </a>
                 </Button>
-                <Button variant="ghost" size="sm">
-                  <Mail className="w-4 h-4" />
+                <Button variant="ghost" size="sm" asChild>
+                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                    <Linkedin className="w-4 h-4" />
+                  </a>
+                </Button>
+                <Button variant="ghost" size="sm" asChild>
+                  <a href="mailto:deepak.guntreddi@email.com">
+                    <Mail className="w-4 h-4" />
+                  </a>
                 </Button>
               </div>
             </div>
@@ -307,16 +319,12 @@ const Index = () => {
                       Built a real-time analytics platform processing 10M+ events daily using Kafka, Spark Streaming, 
                       and Elasticsearch. Implemented ML models for anomaly detection in patient monitoring data.
                     </p>
-                    <div className="flex flex-wrap gap-2 mb-4">
+                    <div className="flex flex-wrap gap-2">
                       <Badge variant="secondary">Kafka</Badge>
                       <Badge variant="secondary">Spark</Badge>
                       <Badge variant="secondary">Elasticsearch</Badge>
                       <Badge variant="secondary">Python</Badge>
                     </div>
-                    <Button variant="outline" size="sm">
-                      <Github className="w-4 h-4 mr-2" />
-                      View Code
-                    </Button>
                   </CardContent>
                 </Card>
 
@@ -330,16 +338,12 @@ const Index = () => {
                       Developed ML models to predict candidate success rates and automate resume screening. 
                       Reduced time-to-hire by 40% and improved placement quality scores.
                     </p>
-                    <div className="flex flex-wrap gap-2 mb-4">
+                    <div className="flex flex-wrap gap-2">
                       <Badge variant="secondary">XGBoost</Badge>
                       <Badge variant="secondary">NLP</Badge>
                       <Badge variant="secondary">FastAPI</Badge>
                       <Badge variant="secondary">Docker</Badge>
                     </div>
-                    <Button variant="outline" size="sm">
-                      <ExternalLink className="w-4 h-4 mr-2" />
-                      Live Demo
-                    </Button>
                   </CardContent>
                 </Card>
 
@@ -353,16 +357,12 @@ const Index = () => {
                       Created an intelligent routing system using GPS data, weather patterns, and vehicle telemetry 
                       to optimize waste collection routes and predict maintenance needs.
                     </p>
-                    <div className="flex flex-wrap gap-2 mb-4">
+                    <div className="flex flex-wrap gap-2">
                       <Badge variant="secondary">PySpark</Badge>
                       <Badge variant="secondary">BigQuery</Badge>
                       <Badge variant="secondary">GCP</Badge>
                       <Badge variant="secondary">ArcGIS</Badge>
                     </div>
-                    <Button variant="outline" size="sm">
-                      <Github className="w-4 h-4 mr-2" />
-                      Case Study
-                    </Button>
                   </CardContent>
                 </Card>
 
@@ -376,16 +376,12 @@ const Index = () => {
                       Built comprehensive credit scoring models and risk assessment tools for a regional bank. 
                       Implemented real-time fraud detection and automated regulatory reporting.
                     </p>
-                    <div className="flex flex-wrap gap-2 mb-4">
+                    <div className="flex flex-wrap gap-2">
                       <Badge variant="secondary">Scikit-learn</Badge>
                       <Badge variant="secondary">Tableau</Badge>
                       <Badge variant="secondary">MySQL</Badge>
                       <Badge variant="secondary">Python</Badge>
                     </div>
-                    <Button variant="outline" size="sm">
-                      <ExternalLink className="w-4 h-4 mr-2" />
-                      Details
-                    </Button>
                   </CardContent>
                 </Card>
               </div>
@@ -393,23 +389,6 @@ const Index = () => {
 
             <TabsContent value="blog" className="mt-8">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Building Scalable ETL Pipelines with Apache Airflow</CardTitle>
-                    <CardDescription>March 15, 2024</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-slate-700 mb-4">
-                      Deep dive into designing robust, scalable ETL pipelines using Apache Airflow. 
-                      Covers best practices for error handling, monitoring, and performance optimization.
-                    </p>
-                    <Button variant="outline" size="sm">
-                      <ExternalLink className="w-4 h-4 mr-2" />
-                      Read More
-                    </Button>
-                  </CardContent>
-                </Card>
-
                 <Card>
                   <CardHeader>
                     <CardTitle>Event-Driven Machine Learning Pipelines with Kafka and Feature Stores</CardTitle>
@@ -420,10 +399,19 @@ const Index = () => {
                       Comprehensive guide to building event-driven ML pipelines using Kafka for real-time data streaming 
                       and feature stores for consistent feature management across training and inference.
                     </p>
-                    <Button variant="outline" size="sm">
-                      <ExternalLink className="w-4 h-4 mr-2" />
-                      Read More
-                    </Button>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Building Scalable ETL Pipelines with Apache Airflow</CardTitle>
+                    <CardDescription>March 15, 2024</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-slate-700 mb-4">
+                      Deep dive into designing robust, scalable ETL pipelines using Apache Airflow. 
+                      Covers best practices for error handling, monitoring, and performance optimization.
+                    </p>
                   </CardContent>
                 </Card>
 
@@ -437,10 +425,6 @@ const Index = () => {
                       Essential strategies for deploying and maintaining machine learning models in production. 
                       Includes monitoring, versioning, and CI/CD practices for ML systems.
                     </p>
-                    <Button variant="outline" size="sm">
-                      <ExternalLink className="w-4 h-4 mr-2" />
-                      Read More
-                    </Button>
                   </CardContent>
                 </Card>
 
@@ -454,10 +438,6 @@ const Index = () => {
                       Real-world implementation of data mesh principles in large organizations. 
                       Discusses domain-driven design, data products, and federated governance.
                     </p>
-                    <Button variant="outline" size="sm">
-                      <ExternalLink className="w-4 h-4 mr-2" />
-                      Read More
-                    </Button>
                   </CardContent>
                 </Card>
               </div>
@@ -474,17 +454,23 @@ const Index = () => {
             I'm always interested in discussing data engineering challenges and opportunities.
           </p>
           <div className="flex justify-center gap-4 mb-8">
-            <Button variant="secondary">
-              <Mail className="w-4 h-4 mr-2" />
-              Email Me
+            <Button variant="secondary" asChild>
+              <a href="mailto:deepak.guntreddi@email.com">
+                <Mail className="w-4 h-4 mr-2" />
+                Email Me
+              </a>
             </Button>
-            <Button variant="outline">
-              <Linkedin className="w-4 h-4 mr-2" />
-              LinkedIn
+            <Button variant="outline" asChild>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                <Linkedin className="w-4 h-4 mr-2" />
+                LinkedIn
+              </a>
             </Button>
-            <Button variant="outline">
-              <Github className="w-4 h-4 mr-2" />
-              GitHub
+            <Button variant="outline" asChild>
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+                <Github className="w-4 h-4 mr-2" />
+                GitHub
+              </a>
             </Button>
           </div>
           <p className="text-slate-400">
