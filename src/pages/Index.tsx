@@ -1,537 +1,498 @@
 
-import { useEffect, useState } from "react";
-import { Mail, Linkedin, Download, Phone, ExternalLink, Menu, X, BookOpen } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Github, Linkedin, Mail, MapPin, Phone, Download, ExternalLink } from "lucide-react";
 
 const Index = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("hero");
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = ["hero", "about", "skills", "experience", "projects", "education", "blog", "contact"];
-      const scrollPosition = window.scrollY + 100;
-
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const offsetTop = element.offsetTop;
-          const offsetBottom = offsetTop + element.offsetHeight;
-          
-          if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-    setIsMenuOpen(false);
-  };
-
-  const skills = {
-    "Languages": ["Python", "SQL"],
-    "ETL & Data Workflow": ["Apache Airflow", "dbt", "PySpark", "SSIS"],
-    "Data Warehousing": ["Snowflake", "Redshift", "BigQuery", "PostgreSQL", "SQL Server"],
-    "Cloud Platforms": ["AWS (S3, Glue, Lambda, Textract)", "GCP (BigQuery, Dataflow, Storage)"],
-    "Visualization": ["Tableau", "Power BI", "Seaborn", "Plotly", "Matplotlib"],
-    "DevOps & Automation": ["Docker", "GitHub Actions", "RESTful APIs"],
-    "Governance": ["Great Expectations", "PII Masking", "RBAC", "HIPAA", "SOC 2"],
-    "Healthcare Standards": ["HL7", "FHIR"],
-    "Modeling": ["Star Schema", "SCD Type 2", "Dimensional Modeling"],
-    "Agile Tools": ["Jira", "Scrum"],
-    "Certifications": ["AWS Solution Architect Associate"]
-  };
-
-  const experiences = [
-    {
-      company: "One Staff Medical",
-      role: "Senior Data Engineer",
-      period: "June 2023 – Present",
-      location: "Omaha, NE",
-      achievements: [
-        "Built predictive ML models (CatBoost, logistic regression) to forecast candidate fall-offs, placement likelihood, and onboarding delays using features engineered with dbt and Snowflake",
-        "Deployed ML models using MLflow and Docker, with real-time inference integrated into recruiter dashboards through RESTful APIs",
-        "Used SHAP and LIME to generate interpretable recruiter feedback on model-based candidate prioritization scores",
-        "Designed scalable PySpark and Airflow ETL pipelines to ingest and transform recruiter activity, compliance data, and ATS events from Bullhorn and internal systems",
-        "Modeled SCD Type 2 data marts in Snowflake for tracking assignment history, licensing timelines, and onboarding milestones",
-        "Created Tableau dashboards to visualize fill rate trends, recruiter performance rankings, and ML-based candidate readiness scores",
-        "Built dbt models to compute candidate funnel metrics, recruiter velocity, and SLA adherence; integrated with Great Expectations for quality checks",
-        "Standardized compliance dashboards across 30+ U.S. states using DoH and state board datasets, with automated alerts for policy violations",
-        "Implemented HIPAA- and SOC 2-compliant RBAC across all data layers, using PII masking, access auditing, and column-level security in Snowflake",
-        "Optimized Snowflake compute spend by 25% through clustering, warehouse auto-suspend tuning, and query refactoring using EXPLAIN plans",
-        "Migrated legacy SSRS and SQL Server ETLs to modern AWS Glue, S3, and Airflow pipelines, enabling scalable reporting",
-        "Mentored junior engineers on CI/CD practices with GitHub Actions, feature store design, and modular pipeline development in Airflow"
-      ]
-    },
-    {
-      company: "Republic Services",
-      role: "Data Engineer",
-      period: "April 2021 – May 2023",
-      location: "Phoenix, AZ",
-      achievements: [
-        "Built ML models using XGBoost and logistic regression to predict route delays and preempt vehicle breakdowns using GPS, weather, and telemetry data",
-        "Deployed ML APIs using GCP Cloud Run and Docker, integrating model outputs into operational dashboards used by dispatch teams",
-        "Visualized feature importance using SHAP to aid route managers in understanding delay risk drivers and recommend alternate dispatching",
-        "Orchestrated high-volume ETL jobs using Apache Airflow and PySpark, ingesting fuel usage, load weights, and site check-ins from 500+ waste facilities",
-        "Designed and optimized BigQuery marts using partitioned and clustered tables to support sustainability KPIs and customer billing reconciliation",
-        "Created dbt transformation layers to calculate driver compliance scores, fuel efficiency ratings, and maintenance alerts",
-        "Built Power BI dashboards tracking recycling rates, disposal trends, and SLA breaches with drill-downs by region and vehicle type",
-        "Automated invoice and manifest data extraction using Google Textract and OCR pipelines, reducing manual processing by 60%",
-        "Integrated ArcGIS APIs to enrich GPS records with geofences and custom routing zones for optimized pickups",
-        "Ensured SOC 2 audit readiness by embedding data lineage tracking, access logging, and field-level security controls into all BigQuery datasets"
-      ]
-    },
-    {
-      company: "Atlantic Union Bank",
-      role: "Data Analyst",
-      period: "December 2019 – March 2021",
-      location: "Richmond, VA",
-      achievements: [
-        "Built customer segmentation models using logistic regression and K-Means in Scikit-learn to support credit scoring and personalized loan offers",
-        "Modeled MySQL marts to track customer behavior, product usage, and delinquency trends; used dimensional modeling for reporting layer",
-        "Developed Tableau dashboards for finance, risk, and investor relations, visualizing fund performance and credit risk KPIs",
-        "Automated monthly investor and regulatory reports using Python scripts, reducing turnaround from two days to under two hours",
-        "Collaborated with engineering to optimize ETL refresh schedules and streamline joins, improving SQL job runtimes by 45%",
-        "Integrated RBI exchange rate APIs and macroeconomic data feeds to support market exposure reporting",
-        "Designed standardized KPI templates using Seaborn and Matplotlib for internal and board-facing reports",
-        "Built data dictionaries and documented SQL logic and assumptions in version-controlled repos for audit traceability",
-        "Participated in quarterly audit prep by validating reporting logic and ensuring alignment with compliance thresholds"
-      ]
-    },
-    {
-      company: "Depot",
-      role: "Business Intelligence Analyst",
-      period: "May 2018 – November 2019",
-      location: "Boca Raton, FL",
-      achievements: [
-        "Designed Tableau dashboards with row-level security (RLS) to serve personalized insights to sales and finance leadership",
-        "Automated recurring Excel and SQL Server reports using Power Query, SQL, and VBA, reducing manual time by 50%",
-        "Conducted churn analysis using behavioral segmentation and created upsell opportunity reports tied to CRM and support ticket metadata",
-        "Partnered with engineers to define early-stage data lake ingestion strategy for CRM, ticketing, and web engagement datasets",
-        "Created visualizations in Power BI and Plotly to track revenue trends, seasonal patterns, and sales targets across teams",
-        "Contributed weekly to business reviews by delivering actionable insights on customer behavior and product performance"
-      ]
-    },
-    {
-      company: "Tvisha Technologies",
-      role: "Data Analytics Intern",
-      period: "April 2017 – May 2018",
-      location: "Hyderabad, India",
-      achievements: [
-        "Supported ETL development using SQL Server Integration Services (SSIS) to consolidate data from ERP and CRM systems",
-        "Cleaned and validated client sales, returns, and supply chain datasets to support dashboards and executive summaries",
-        "Built Excel-based dashboards using Power Pivot and SQL connectors, enabling slice-and-dice reporting for business users",
-        "Assisted senior analysts in migrating static reports to Power BI, implementing RLS and basic drill-through functionality"
-      ]
-    }
-  ];
-
-  const projects = [
-    {
-      title: "AWS Textract Pipeline for Clinical Documents",
-      problem: "Manual data entry from scanned medical documents was time-consuming and error-prone, creating bottlenecks in clinical workflows.",
-      solution: "Built automated pipeline using AWS Lambda, Textract, and Python to extract structured data from lab reports and discharge summaries.",
-      outcome: "Achieved 60% reduction in manual entry workload and improved data accuracy by 35%.",
-      technologies: ["AWS Lambda", "Textract", "Python", "S3", "Airflow"]
-    },
-    {
-      title: "Production-Ready ML Features for Early Warning System",
-      problem: "ML team needed real-time patient deterioration features but lacked scalable feature engineering infrastructure.",
-      solution: "Developed real-time feature pipeline in Snowflake and dbt with MLflow integration for patient monitoring models.",
-      outcome: "Improved model deployment speed by 40% and enabled 24/7 patient risk scoring for 10,000+ patients.",
-      technologies: ["Snowflake", "dbt", "Python", "MLflow", "Real-time Pipeline"]
-    },
-    {
-      title: "Snowflake Cost Optimization Initiative",
-      problem: "Monthly Snowflake compute costs were escalating due to inefficient warehouse sizing and query patterns.",
-      solution: "Implemented warehouse auto-scaling, query optimization, and workload scheduling using performance monitoring and tuning.",
-      outcome: "Reduced monthly compute costs by 25% while maintaining 99.9% query performance SLA.",
-      technologies: ["Snowflake", "SQL Optimization", "Performance Tuning", "Cost Management"]
-    },
-    {
-      title: "Public Health Dashboard for Policy Makers",
-      problem: "Medicaid directors needed real-time visibility into claims trends and program KPIs for policy decisions.",
-      solution: "Built comprehensive Power BI dashboard with automated data refresh from multiple healthcare data sources.",
-      outcome: "Enabled data-driven policy decisions affecting 500K+ Medicaid beneficiaries and reduced reporting time by 80%.",
-      technologies: ["Power BI", "SQL Server", "Python", "Healthcare Analytics"]
-    }
-  ];
-
-  const blogPosts = [
-    {
-      title: "How to Productionize Machine Learning Pipelines",
-      description: "Best practices for transitioning ML models from experimentation to production-ready systems in healthcare environments.",
-      readTime: "8 min read",
-      category: "Machine Learning"
-    },
-    {
-      title: "Event-Driven Machine Learning Pipelines with Kafka and Feature Stores",
-      description: "Building real-time ML inference systems using Apache Kafka, feature stores, and event-driven architectures for low-latency predictions.",
-      readTime: "6 min read",
-      category: "Data Engineering"
-    },
-    {
-      title: "Data Modeling with SCD Type 2 in Snowflake",
-      description: "Complete guide to implementing Slowly Changing Dimensions for historical patient tracking in cloud data warehouses.",
-      readTime: "10 min read",
-      category: "Data Warehousing"
-    },
-    {
-      title: "Cost Optimization Strategies for Cloud Data Platforms",
-      description: "Proven techniques to reduce cloud compute costs while maintaining performance and reliability in data workloads.",
-      readTime: "7 min read",
-      category: "Cloud Computing"
-    }
-  ];
-
-  const navigation = [
-    { name: "About", href: "about" },
-    { name: "Skills", href: "skills" },
-    { name: "Experience", href: "experience" },
-    { name: "Projects", href: "projects" },
-    { name: "Education", href: "education" },
-    { name: "Articles", href: "blog" },
-    { name: "Contact", href: "contact" }
-  ];
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 text-white">
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-700/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
-            <div className="text-xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-              Deepak Sai Guntreddi
-            </div>
-            
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex space-x-8">
-              {navigation.map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => scrollToSection(item.href)}
-                  className={`text-sm font-medium transition-colors hover:text-blue-400 ${
-                    activeSection === item.href ? "text-blue-400" : "text-slate-300"
-                  }`}
-                >
-                  {item.name}
-                </button>
-              ))}
-            </div>
-
-            {/* Mobile menu button */}
-            <button
-              className="md:hidden"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
-          </div>
-
-          {/* Mobile Navigation */}
-          {isMenuOpen && (
-            <div className="md:hidden py-4 border-t border-slate-700/50">
-              <div className="flex flex-col space-y-3">
-                {navigation.map((item) => (
-                  <button
-                    key={item.name}
-                    onClick={() => scrollToSection(item.href)}
-                    className={`text-left text-sm font-medium transition-colors hover:text-blue-400 ${
-                      activeSection === item.href ? "text-blue-400" : "text-slate-300"
-                    }`}
-                  >
-                    {item.name}
-                  </button>
-                ))}
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
+      {/* Header */}
+      <header className="bg-white/80 backdrop-blur-sm border-b sticky top-0 z-50">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex items-center justify-between">
+            <h1 className="text-2xl font-bold text-slate-800">Deepak Sai Guntreddi</h1>
+            <div className="flex items-center gap-4">
+              <Button variant="outline" size="sm">
+                <Download className="w-4 h-4 mr-2" />
+                Resume
+              </Button>
+              <div className="flex gap-2">
+                <Button variant="ghost" size="sm">
+                  <Github className="w-4 h-4" />
+                </Button>
+                <Button variant="ghost" size="sm">
+                  <Linkedin className="w-4 h-4" />
+                </Button>
+                <Button variant="ghost" size="sm">
+                  <Mail className="w-4 h-4" />
+                </Button>
               </div>
             </div>
-          )}
+          </div>
         </div>
-      </nav>
+      </header>
 
       {/* Hero Section */}
-      <section id="hero" className="pt-24 pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center space-y-8 animate-fade-in">
-            <div className="space-y-4">
-              <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                Deepak Sai Guntreddi
-              </h1>
-              <h2 className="text-xl md:text-2xl text-slate-300 font-medium">
-                Senior Data Engineer | Cloud & Analytics Specialist
-              </h2>
-              <p className="text-lg text-slate-400 flex items-center justify-center gap-2">
-                📍 Omaha, NE
-              </p>
-            </div>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button 
-                size="lg" 
-                variant="outline"
-                className="border-slate-600 text-slate-300 hover:bg-slate-800 hover:text-white transition-all duration-300"
-                onClick={() => window.open('mailto:guntreddideepaksai@gmail.com')}
-              >
-                <Mail className="mr-2 h-5 w-5" />
-                Email Me
-              </Button>
-              <Button 
-                size="lg" 
-                variant="outline"
-                className="border-slate-600 text-slate-300 hover:bg-slate-800 hover:text-white transition-all duration-300"
-                onClick={() => window.open('https://www.linkedin.com/in/deepak-sai-guntreddi-38b746369/', '_blank')}
-              >
-                <Linkedin className="mr-2 h-5 w-5" />
-                LinkedIn
-              </Button>
-            </div>
-
-            <div className="text-slate-400 flex items-center justify-center gap-2">
-              <Phone className="h-4 w-4" />
-              <span>+1 402-201-7155</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* About Section */}
-      <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-800/30">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-            About Me
-          </h2>
-          <div className="text-lg text-slate-300 leading-relaxed space-y-6">
-            <p>
-              I am a results-driven data engineer who builds scalable, reliable, and cost-efficient data pipelines and analytics solutions. I specialize in developing cloud-native architectures, ETL/ELT pipelines, and dimensional data models on platforms like AWS, GCP, Snowflake, and BigQuery.
+      <section className="py-20">
+        <div className="container mx-auto px-4 text-center">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-5xl font-bold text-slate-800 mb-6">
+              Senior Data Engineer
+            </h2>
+            <p className="text-xl text-slate-600 mb-8 leading-relaxed">
+              Specializing in cloud analytics, ETL pipelines, machine learning deployment, and data warehousing solutions. 
+              Experienced in building scalable data infrastructure and ML models that drive business insights.
             </p>
-            <p>
-              I collaborate closely with data science teams to productionize ML workflows and apply modern data stack tools (Airflow, dbt, Great Expectations) to improve data quality, governance, and automation. With a deep understanding of HIPAA/SOC 2 compliance, healthcare standards (HL7, FHIR), and geospatial/time-series analytics, I help organizations unlock insights while ensuring data integrity and privacy.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Skills Section */}
-      <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-            Skills & Technologies
-          </h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            {Object.entries(skills).map(([category, skillList]) => (
-              <div key={category} className="space-y-4">
-                <h3 className="text-xl font-semibold text-blue-400">{category}</h3>
-                <div className="flex flex-wrap gap-2">
-                  {skillList.map((skill) => (
-                    <Badge 
-                      key={skill} 
-                      variant="secondary" 
-                      className="bg-slate-700 text-slate-200 hover:bg-slate-600 transition-colors duration-200"
-                    >
-                      {skill}
-                    </Badge>
-                  ))}
-                </div>
+            <div className="flex items-center justify-center gap-6 text-slate-600 mb-8">
+              <div className="flex items-center gap-2">
+                <MapPin className="w-4 h-4" />
+                <span>Omaha, NE</span>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Experience Section */}
-      <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-800/30">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-            Work Experience
-          </h2>
-          <div className="space-y-8">
-            {experiences.map((exp, index) => (
-              <Card key={index} className="bg-slate-800/50 border-slate-700 hover:bg-slate-800/70 transition-all duration-300">
-                <CardHeader>
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-                    <div>
-                      <CardTitle className="text-xl text-blue-400">{exp.role}</CardTitle>
-                      <CardDescription className="text-lg text-slate-300 font-medium">
-                        {exp.company} - {exp.location}
-                      </CardDescription>
-                    </div>
-                    <Badge variant="outline" className="border-blue-500 text-blue-400 mt-2 md:mt-0">
-                      {exp.period}
-                    </Badge>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2">
-                    {exp.achievements.map((achievement, i) => (
-                      <li key={i} className="text-slate-300 flex items-start">
-                        <span className="text-blue-400 mr-3 mt-1.5">•</span>
-                        {achievement}
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Projects Section */}
-      <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-            Featured Projects
-          </h2>
-          <div className="grid lg:grid-cols-2 gap-8">
-            {projects.map((project, index) => (
-              <Card key={index} className="bg-slate-800/50 border-slate-700 hover:bg-slate-800/70 transition-all duration-300 hover:shadow-xl">
-                <CardHeader>
-                  <CardTitle className="text-xl text-blue-400 flex items-center gap-2">
-                    {project.title}
-                    <ExternalLink className="h-4 w-4" />
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div>
-                    <h4 className="text-sm font-semibold text-cyan-400 mb-2">Problem:</h4>
-                    <p className="text-slate-300 text-sm">{project.problem}</p>
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-semibold text-cyan-400 mb-2">Solution:</h4>
-                    <p className="text-slate-300 text-sm">{project.solution}</p>
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-semibold text-cyan-400 mb-2">Outcome:</h4>
-                    <p className="text-slate-300 text-sm font-medium">{project.outcome}</p>
-                  </div>
-                  <div className="flex flex-wrap gap-2 pt-2">
-                    {project.technologies.map((tech) => (
-                      <Badge key={tech} variant="outline" className="border-cyan-500 text-cyan-400">
-                        {tech}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Education Section */}
-      <section id="education" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-800/30">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-            Education
-          </h2>
-          <div className="space-y-6">
-            <Card className="bg-slate-800/50 border-slate-700">
-              <CardHeader>
-                <CardTitle className="text-xl text-blue-400">Master of Science in Computer Science</CardTitle>
-                <CardDescription className="text-lg text-slate-300">University of Nebraska at Omaha (2025)</CardDescription>
-              </CardHeader>
-            </Card>
-            <Card className="bg-slate-800/50 border-slate-700">
-              <CardHeader>
-                <CardTitle className="text-xl text-blue-400">Bachelor of Technology in Electronics & Communication</CardTitle>
-                <CardDescription className="text-lg text-slate-300">JNTU Kakinada (2014)</CardDescription>
-              </CardHeader>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Articles & Insights Section */}
-      <section id="blog" className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-            Articles & Insights
-          </h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            {blogPosts.map((post, index) => (
-              <Card key={index} className="bg-slate-800/50 border-slate-700 hover:bg-slate-800/70 transition-all duration-300 hover:shadow-xl cursor-pointer">
-                <CardHeader>
-                  <div className="flex items-start justify-between">
-                    <div className="space-y-2">
-                      <Badge variant="outline" className="border-blue-500 text-blue-400 text-xs">
-                        {post.category}
-                      </Badge>
-                      <CardTitle className="text-lg text-blue-400 flex items-start gap-2">
-                        <BookOpen className="h-5 w-5 mt-0.5 flex-shrink-0" />
-                        {post.title}
-                      </CardTitle>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <p className="text-slate-300 text-sm leading-relaxed">{post.description}</p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-slate-400 text-xs">{post.readTime}</span>
-                    <ExternalLink className="h-4 w-4 text-slate-400" />
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-800/30">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-12 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
-            Get In Touch
-          </h2>
-          <div className="space-y-8">
-            <p className="text-xl text-slate-300">
-              Let's connect and discuss how I can help with your data engineering needs.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-              <a 
-                href="mailto:guntreddideepaksai@gmail.com"
-                className="flex items-center gap-3 text-lg text-slate-300 hover:text-blue-400 transition-colors duration-200"
-              >
-                <Mail className="h-6 w-6" />
-                guntreddideepaksai@gmail.com
-              </a>
-              <a 
-                href="tel:+14022017155"
-                className="flex items-center gap-3 text-lg text-slate-300 hover:text-blue-400 transition-colors duration-200"
-              >
-                <Phone className="h-6 w-6" />
-                +1 402-201-7155
-              </a>
-              <a 
-                href="https://www.linkedin.com/in/deepak-sai-guntreddi-38b746369/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 text-lg text-slate-300 hover:text-blue-400 transition-colors duration-200"
-              >
-                <Linkedin className="h-6 w-6" />
-                LinkedIn Profile
-              </a>
+              <div className="flex items-center gap-2">
+                <Phone className="w-4 h-4" />
+                <span>+1 (555) 123-4567</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Mail className="w-4 h-4" />
+                <span>deepak.guntreddi@email.com</span>
+              </div>
             </div>
+            <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
+              View My Work
+            </Button>
           </div>
+        </div>
+      </section>
+
+      {/* Main Content */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <Tabs defaultValue="experience" className="max-w-6xl mx-auto">
+            <TabsList className="grid w-full grid-cols-4">
+              <TabsTrigger value="experience">Experience</TabsTrigger>
+              <TabsTrigger value="skills">Skills</TabsTrigger>
+              <TabsTrigger value="projects">Projects</TabsTrigger>
+              <TabsTrigger value="blog">Blog</TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="experience" className="mt-8">
+              <div className="space-y-6">
+                {/* One Staff Medical */}
+                <Card>
+                  <CardHeader>
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <CardTitle>Senior Data Engineer</CardTitle>
+                        <CardDescription>One Staff Medical – Omaha, NE</CardDescription>
+                      </div>
+                      <Badge variant="secondary">06/2023 – Present</Badge>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-2 text-slate-700">
+                      <li>• Built predictive ML models (CatBoost, logistic regression) to forecast candidate fall-offs, placement likelihood, and onboarding delays using features engineered with dbt and Snowflake.</li>
+                      <li>• Deployed ML models using MLflow and Docker, with real-time inference integrated into recruiter dashboards through RESTful APIs.</li>
+                      <li>• Used SHAP and LIME to generate interpretable recruiter feedback on model-based candidate prioritization scores.</li>
+                      <li>• Designed scalable PySpark and Airflow ETL pipelines to ingest and transform recruiter activity, compliance data, and ATS events from Bullhorn and internal systems.</li>
+                      <li>• Modeled SCD Type 2 data marts in Snowflake for tracking assignment history, licensing timelines, and onboarding milestones.</li>
+                      <li>• Created Tableau dashboards to visualize fill rate trends, recruiter performance rankings, and ML-based candidate readiness scores.</li>
+                      <li>• Built dbt models to compute candidate funnel metrics, recruiter velocity, and SLA adherence; integrated with Great Expectations for quality checks.</li>
+                      <li>• Standardized compliance dashboards across 30+ U.S. states using DoH and state board datasets, with automated alerts for policy violations.</li>
+                      <li>• Implemented HIPAA- and SOC 2-compliant RBAC across all data layers, using PII masking, access auditing, and column-level security in Snowflake.</li>
+                      <li>• Optimized Snowflake compute spend by 25% through clustering, warehouse auto-suspend tuning, and query refactoring using EXPLAIN plans.</li>
+                      <li>• Migrated legacy SSRS and SQL Server ETLs to modern AWS Glue, S3, and Airflow pipelines, enabling scalable reporting.</li>
+                      <li>• Mentored junior engineers on CI/CD practices with GitHub Actions, feature store design, and modular pipeline development in Airflow.</li>
+                    </ul>
+                  </CardContent>
+                </Card>
+
+                {/* Republic Services */}
+                <Card>
+                  <CardHeader>
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <CardTitle>Data Engineer</CardTitle>
+                        <CardDescription>Republic Services – Phoenix, AZ</CardDescription>
+                      </div>
+                      <Badge variant="secondary">04/2021 – 05/2023</Badge>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-2 text-slate-700">
+                      <li>• Built ML models using XGBoost and logistic regression to predict route delays and preempt vehicle breakdowns using GPS, weather, and telemetry data.</li>
+                      <li>• Deployed ML APIs using GCP Cloud Run and Docker, integrating model outputs into operational dashboards used by dispatch teams.</li>
+                      <li>• Visualized feature importance using SHAP to aid route managers in understanding delay risk drivers and recommend alternate dispatching.</li>
+                      <li>• Orchestrated high-volume ETL jobs using Apache Airflow and PySpark, ingesting fuel usage, load weights, and site check-ins from 500+ waste facilities.</li>
+                      <li>• Designed and optimized BigQuery marts using partitioned and clustered tables to support sustainability KPIs and customer billing reconciliation.</li>
+                      <li>• Created dbt transformation layers to calculate driver compliance scores, fuel efficiency ratings, and maintenance alerts.</li>
+                      <li>• Built Power BI dashboards tracking recycling rates, disposal trends, and SLA breaches with drill-downs by region and vehicle type.</li>
+                      <li>• Automated invoice and manifest data extraction using Google Textract and OCR pipelines, reducing manual processing by 60%.</li>
+                      <li>• Integrated ArcGIS APIs to enrich GPS records with geofences and custom routing zones for optimized pickups.</li>
+                      <li>• Ensured SOC 2 audit readiness by embedding data lineage tracking, access logging, and field-level security controls into all BigQuery datasets.</li>
+                    </ul>
+                  </CardContent>
+                </Card>
+
+                {/* Atlantic Union Bank */}
+                <Card>
+                  <CardHeader>
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <CardTitle>Data Analyst</CardTitle>
+                        <CardDescription>Atlantic Union Bank – Richmond, VA</CardDescription>
+                      </div>
+                      <Badge variant="secondary">12/2019 – 03/2021</Badge>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-2 text-slate-700">
+                      <li>• Built customer segmentation models using logistic regression and K-Means in Scikit-learn to support credit scoring and personalized loan offers.</li>
+                      <li>• Modeled MySQL marts to track customer behavior, product usage, and delinquency trends; used dimensional modeling for reporting layer.</li>
+                      <li>• Developed Tableau dashboards for finance, risk, and investor relations, visualizing fund performance and credit risk KPIs.</li>
+                      <li>• Automated monthly investor and regulatory reports using Python scripts, reducing turnaround from two days to under two hours.</li>
+                      <li>• Collaborated with engineering to optimize ETL refresh schedules and streamline joins, improving SQL job runtimes by 45%.</li>
+                      <li>• Integrated RBI exchange rate APIs and macroeconomic data feeds to support market exposure reporting.</li>
+                      <li>• Designed standardized KPI templates using Seaborn and Matplotlib for internal and board-facing reports.</li>
+                      <li>• Built data dictionaries and documented SQL logic and assumptions in version-controlled repos for audit traceability.</li>
+                      <li>• Participated in quarterly audit prep by validating reporting logic and ensuring alignment with compliance thresholds.</li>
+                    </ul>
+                  </CardContent>
+                </Card>
+
+                {/* Depot */}
+                <Card>
+                  <CardHeader>
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <CardTitle>Business Intelligence Analyst</CardTitle>
+                        <CardDescription>Depot – Boca Raton, FL</CardDescription>
+                      </div>
+                      <Badge variant="secondary">05/2018 – 11/2019</Badge>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-2 text-slate-700">
+                      <li>• Designed Tableau dashboards with row-level security (RLS) to serve personalized insights to sales and finance leadership.</li>
+                      <li>• Automated recurring Excel and SQL Server reports using Power Query, SQL, and VBA, reducing manual time by 50%.</li>
+                      <li>• Conducted churn analysis using behavioral segmentation and created upsell opportunity reports tied to CRM and support ticket metadata.</li>
+                      <li>• Partnered with engineers to define early-stage data lake ingestion strategy for CRM, ticketing, and web engagement datasets.</li>
+                      <li>• Created visualizations in Power BI and Plotly to track revenue trends, seasonal patterns, and sales targets across teams.</li>
+                      <li>• Contributed weekly to business reviews by delivering actionable insights on customer behavior and product performance.</li>
+                    </ul>
+                  </CardContent>
+                </Card>
+
+                {/* Tvisha Technologies */}
+                <Card>
+                  <CardHeader>
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <CardTitle>Data Analytics Intern</CardTitle>
+                        <CardDescription>Tvisha Technologies – Hyderabad, India</CardDescription>
+                      </div>
+                      <Badge variant="secondary">04/2017 – 05/2018</Badge>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-2 text-slate-700">
+                      <li>• Supported ETL development using SQL Server Integration Services (SSIS) to consolidate data from ERP and CRM systems.</li>
+                      <li>• Cleaned and validated client sales, returns, and supply chain datasets to support dashboards and executive summaries.</li>
+                      <li>• Built Excel-based dashboards using Power Pivot and SQL connectors, enabling slice-and-dice reporting for business users.</li>
+                      <li>• Assisted senior analysts in migrating static reports to Power BI, implementing RLS and basic drill-through functionality.</li>
+                    </ul>
+                  </CardContent>
+                </Card>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="skills" className="mt-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Programming Languages</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex flex-wrap gap-2">
+                      <Badge variant="outline">Python</Badge>
+                      <Badge variant="outline">SQL</Badge>
+                      <Badge variant="outline">R</Badge>
+                      <Badge variant="outline">Scala</Badge>
+                      <Badge variant="outline">Java</Badge>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Cloud Platforms</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex flex-wrap gap-2">
+                      <Badge variant="outline">AWS</Badge>
+                      <Badge variant="outline">GCP</Badge>
+                      <Badge variant="outline">Azure</Badge>
+                      <Badge variant="outline">Snowflake</Badge>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Big Data & ETL</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex flex-wrap gap-2">
+                      <Badge variant="outline">Apache Spark</Badge>
+                      <Badge variant="outline">Airflow</Badge>
+                      <Badge variant="outline">Kafka</Badge>
+                      <Badge variant="outline">dbt</Badge>
+                      <Badge variant="outline">Databricks</Badge>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Machine Learning</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex flex-wrap gap-2">
+                      <Badge variant="outline">Scikit-learn</Badge>
+                      <Badge variant="outline">TensorFlow</Badge>
+                      <Badge variant="outline">PyTorch</Badge>
+                      <Badge variant="outline">MLflow</Badge>
+                      <Badge variant="outline">XGBoost</Badge>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Visualization</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex flex-wrap gap-2">
+                      <Badge variant="outline">Tableau</Badge>
+                      <Badge variant="outline">Power BI</Badge>
+                      <Badge variant="outline">Plotly</Badge>
+                      <Badge variant="outline">D3.js</Badge>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Databases</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex flex-wrap gap-2">
+                      <Badge variant="outline">PostgreSQL</Badge>
+                      <Badge variant="outline">MySQL</Badge>
+                      <Badge variant="outline">MongoDB</Badge>
+                      <Badge variant="outline">Redis</Badge>
+                      <Badge variant="outline">BigQuery</Badge>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="projects" className="mt-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Real-time Analytics Platform</CardTitle>
+                    <CardDescription>Streaming data pipeline for healthcare analytics</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-slate-700 mb-4">
+                      Built a real-time analytics platform processing 10M+ events daily using Kafka, Spark Streaming, 
+                      and Elasticsearch. Implemented ML models for anomaly detection in patient monitoring data.
+                    </p>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      <Badge variant="secondary">Kafka</Badge>
+                      <Badge variant="secondary">Spark</Badge>
+                      <Badge variant="secondary">Elasticsearch</Badge>
+                      <Badge variant="secondary">Python</Badge>
+                    </div>
+                    <Button variant="outline" size="sm">
+                      <Github className="w-4 h-4 mr-2" />
+                      View Code
+                    </Button>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle>ML-Powered Recruitment Platform</CardTitle>
+                    <CardDescription>Candidate matching and prediction system</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-slate-700 mb-4">
+                      Developed ML models to predict candidate success rates and automate resume screening. 
+                      Reduced time-to-hire by 40% and improved placement quality scores.
+                    </p>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      <Badge variant="secondary">XGBoost</Badge>
+                      <Badge variant="secondary">NLP</Badge>
+                      <Badge variant="secondary">FastAPI</Badge>
+                      <Badge variant="secondary">Docker</Badge>
+                    </div>
+                    <Button variant="outline" size="sm">
+                      <ExternalLink className="w-4 h-4 mr-2" />
+                      Live Demo
+                    </Button>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Waste Management Optimization</CardTitle>
+                    <CardDescription>Route optimization using IoT and ML</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-slate-700 mb-4">
+                      Created an intelligent routing system using GPS data, weather patterns, and vehicle telemetry 
+                      to optimize waste collection routes and predict maintenance needs.
+                    </p>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      <Badge variant="secondary">PySpark</Badge>
+                      <Badge variant="secondary">BigQuery</Badge>
+                      <Badge variant="secondary">GCP</Badge>
+                      <Badge variant="secondary">ArcGIS</Badge>
+                    </div>
+                    <Button variant="outline" size="sm">
+                      <Github className="w-4 h-4 mr-2" />
+                      Case Study
+                    </Button>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Financial Risk Analytics</CardTitle>
+                    <CardDescription>Credit scoring and risk modeling system</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-slate-700 mb-4">
+                      Built comprehensive credit scoring models and risk assessment tools for a regional bank. 
+                      Implemented real-time fraud detection and automated regulatory reporting.
+                    </p>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      <Badge variant="secondary">Scikit-learn</Badge>
+                      <Badge variant="secondary">Tableau</Badge>
+                      <Badge variant="secondary">MySQL</Badge>
+                      <Badge variant="secondary">Python</Badge>
+                    </div>
+                    <Button variant="outline" size="sm">
+                      <ExternalLink className="w-4 h-4 mr-2" />
+                      Details
+                    </Button>
+                  </CardContent>
+                </Card>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="blog" className="mt-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Building Scalable ETL Pipelines with Apache Airflow</CardTitle>
+                    <CardDescription>March 15, 2024</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-slate-700 mb-4">
+                      Deep dive into designing robust, scalable ETL pipelines using Apache Airflow. 
+                      Covers best practices for error handling, monitoring, and performance optimization.
+                    </p>
+                    <Button variant="outline" size="sm">
+                      <ExternalLink className="w-4 h-4 mr-2" />
+                      Read More
+                    </Button>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Event-Driven Machine Learning Pipelines with Kafka and Feature Stores</CardTitle>
+                    <CardDescription>February 28, 2024</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-slate-700 mb-4">
+                      Comprehensive guide to building event-driven ML pipelines using Kafka for real-time data streaming 
+                      and feature stores for consistent feature management across training and inference.
+                    </p>
+                    <Button variant="outline" size="sm">
+                      <ExternalLink className="w-4 h-4 mr-2" />
+                      Read More
+                    </Button>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle>MLOps Best Practices for Production Deployments</CardTitle>
+                    <CardDescription>January 20, 2024</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-slate-700 mb-4">
+                      Essential strategies for deploying and maintaining machine learning models in production. 
+                      Includes monitoring, versioning, and CI/CD practices for ML systems.
+                    </p>
+                    <Button variant="outline" size="sm">
+                      <ExternalLink className="w-4 h-4 mr-2" />
+                      Read More
+                    </Button>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Data Mesh Architecture in Practice</CardTitle>
+                    <CardDescription>December 10, 2023</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-slate-700 mb-4">
+                      Real-world implementation of data mesh principles in large organizations. 
+                      Discusses domain-driven design, data products, and federated governance.
+                    </p>
+                    <Button variant="outline" size="sm">
+                      <ExternalLink className="w-4 h-4 mr-2" />
+                      Read More
+                    </Button>
+                  </CardContent>
+                </Card>
+              </div>
+            </TabsContent>
+          </Tabs>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-8 px-4 sm:px-6 lg:px-8 bg-slate-900 border-t border-slate-700">
-        <div className="max-w-7xl mx-auto text-center">
+      <footer className="bg-slate-800 text-white py-12">
+        <div className="container mx-auto px-4 text-center">
+          <h3 className="text-2xl font-bold mb-4">Let's Connect</h3>
+          <p className="text-slate-300 mb-8">
+            I'm always interested in discussing data engineering challenges and opportunities.
+          </p>
+          <div className="flex justify-center gap-4 mb-8">
+            <Button variant="secondary">
+              <Mail className="w-4 h-4 mr-2" />
+              Email Me
+            </Button>
+            <Button variant="outline">
+              <Linkedin className="w-4 h-4 mr-2" />
+              LinkedIn
+            </Button>
+            <Button variant="outline">
+              <Github className="w-4 h-4 mr-2" />
+              GitHub
+            </Button>
+          </div>
           <p className="text-slate-400">
-            © 2024 Deepak Sai Guntreddi. Built with React and Tailwind CSS.
+            © 2024 Deepak Sai Guntreddi. All rights reserved.
           </p>
         </div>
       </footer>
