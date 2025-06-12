@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Github, Linkedin, Mail, MapPin, Phone, Download, ExternalLink } from "lucide-react";
+import { Github, Linkedin, Mail, MapPin, Phone, ExternalLink } from "lucide-react";
 
 const Index = () => {
   return (
@@ -14,10 +14,6 @@ const Index = () => {
           <div className="flex items-center justify-between">
             <h1 className="text-2xl font-bold text-slate-800">Deepak Sai Guntreddi</h1>
             <div className="flex items-center gap-4">
-              <Button variant="outline" size="sm">
-                <Download className="w-4 h-4 mr-2" />
-                Resume
-              </Button>
               <div className="flex gap-2">
                 <Button variant="ghost" size="sm">
                   <Github className="w-4 h-4" />
