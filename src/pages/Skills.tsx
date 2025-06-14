@@ -90,15 +90,20 @@ export const Skills = () => {
     : skillCategories.filter(cat => cat.category === selectedCategory);
 
   useEffect(() => {
+    console.log("Skills component mounted, categories:", skillCategories.length);
+    console.log("Filtered categories:", filteredCategories.length);
+    
     observerRef.current = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const index = parseInt(entry.target.getAttribute('data-category') || '0');
+            console.log("Making skill category visible:", index);
             setVisibleCategories(prev => new Set([...prev, index]));
             
             setTimeout(() => {
               const categorySkills = filteredCategories[index]?.skills.map(skill => `${index}-${skill.name}`) || [];
+              console.log("Animating skills:", categorySkills);
               setAnimatedSkills(prev => new Set([...prev, ...categorySkills]));
             }, 300);
           }
@@ -116,6 +121,8 @@ export const Skills = () => {
       observerRef.current.observe(el);
     }
   };
+
+  console.log("Rendering Skills component with", filteredCategories.length, "categories");
 
   return (
     <div className="min-h-screen pt-24 pb-16">
@@ -135,7 +142,10 @@ export const Skills = () => {
             <Button
               key={category}
               variant={selectedCategory === category ? "default" : "outline"}
-              onClick={() => setSelectedCategory(category)}
+              onClick={() => {
+                console.log("Changing category to:", category);
+                setSelectedCategory(category);
+              }}
               className={`transition-all duration-300 hover:scale-105 ${
                 selectedCategory === category
                   ? "bg-gradient-to-r from-cyan-500 to-violet-500 text-white border-0 shadow-lg shadow-cyan-500/25"

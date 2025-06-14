@@ -37,11 +37,14 @@ export const Experience = () => {
   const observerRef = useRef<IntersectionObserver>();
 
   useEffect(() => {
+    console.log("Experience component mounted, experiences:", experiences);
+    
     observerRef.current = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const index = parseInt(entry.target.getAttribute('data-index') || '0');
+            console.log("Making item visible:", index);
             setVisibleItems(prev => new Set([...prev, index]));
           }
         });
@@ -58,6 +61,8 @@ export const Experience = () => {
       observerRef.current.observe(el);
     }
   };
+
+  console.log("Rendering Experience component with", experiences.length, "experiences");
 
   return (
     <div className="min-h-screen pt-24 pb-16">
