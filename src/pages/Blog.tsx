@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Clock } from "lucide-react";
+import { Clock, ExternalLink } from "lucide-react";
 
 const blogPosts = [
   {
@@ -11,48 +11,48 @@ const blogPosts = [
     excerpt: "Comprehensive guide to building event-driven ML pipelines using Kafka for real-time data streaming and feature stores for consistent feature management across training and inference.",
     readTime: "12 min read",
     tags: ["Machine Learning", "Kafka", "Data Engineering"],
-    category: "Tech",
-    image: "/placeholder.svg"
+    category: "Data Engineering",
+    url: "https://medium.com/@guntreddideepaksai/event-driven-machine-learning-pipelines-with-kafka-and-feature-stores-1cf94984bf76"
   },
   {
     title: "Building Scalable ETL Pipelines with Apache Airflow",
     excerpt: "Deep dive into designing robust, scalable ETL pipelines using Apache Airflow. Covers best practices for error handling, monitoring, and performance optimization.",
     readTime: "10 min read",
     tags: ["ETL", "Airflow", "Data Pipeline"],
-    category: "Tech",
-    image: "/placeholder.svg"
+    category: "Data Engineering",
+    url: "#"
   },
   {
     title: "MLOps Best Practices for Production Deployments",
     excerpt: "Essential strategies for deploying and maintaining machine learning models in production. Includes monitoring, versioning, and CI/CD practices for ML systems.",
     readTime: "15 min read",
     tags: ["MLOps", "DevOps", "Machine Learning"],
-    category: "Tech",
-    image: "/placeholder.svg"
+    category: "ML",
+    url: "#"
   },
   {
     title: "Data Mesh Architecture in Practice",
     excerpt: "Real-world implementation of data mesh principles in large organizations. Discusses domain-driven design, data products, and federated governance.",
     readTime: "18 min read",
     tags: ["Data Architecture", "Data Mesh", "Enterprise"],
-    category: "Architecture",
-    image: "/placeholder.svg"
+    category: "Cloud",
+    url: "#"
   },
   {
     title: "Optimizing Snowflake Performance and Cost",
     excerpt: "Practical techniques for reducing Snowflake compute costs while maintaining query performance. Includes clustering strategies, warehouse sizing, and query optimization.",
     readTime: "8 min read",
     tags: ["Snowflake", "Optimization", "Cost Management"],
-    category: "Tech",
-    image: "/placeholder.svg"
+    category: "Cloud",
+    url: "#"
   },
   {
     title: "Real-time Analytics with Apache Kafka and Stream Processing",
     excerpt: "Building real-time analytics systems using Kafka Streams and Apache Flink. Covers event sourcing, windowing, and stateful stream processing patterns.",
     readTime: "14 min read",
     tags: ["Kafka", "Stream Processing", "Real-time"],
-    category: "Tech",
-    image: "/placeholder.svg"
+    category: "Data Engineering",
+    url: "#"
   }
 ];
 
@@ -96,7 +96,7 @@ export const Blog = () => {
           <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-violet-400 bg-clip-text text-transparent">
             Latest Insights
           </h1>
-          <p className="text-xl text-slate-400 max-w-2xl mx-auto">
+          <p className="text-xl text-slate-300 max-w-2xl mx-auto">
             Thoughts and tutorials on data engineering, machine learning, and modern data architecture
           </p>
         </div>
@@ -110,8 +110,8 @@ export const Blog = () => {
               onClick={() => setSelectedCategory(category)}
               className={`transition-all duration-300 hover:scale-105 ${
                 selectedCategory === category
-                  ? "bg-gradient-to-r from-cyan-500 to-violet-500 text-white border-0"
-                  : "border-slate-600 text-slate-300 hover:bg-slate-800 hover:border-cyan-400 hover:text-cyan-400"
+                  ? "bg-gradient-to-r from-cyan-500 to-violet-500 text-white border-0 shadow-lg shadow-cyan-500/25"
+                  : "border-slate-600 text-slate-300 hover:bg-slate-800/50 hover:border-cyan-400 hover:text-cyan-400 backdrop-blur-sm"
               }`}
             >
               {category}
@@ -131,21 +131,21 @@ export const Blog = () => {
               }`}
               style={{ transitionDelay: `${index * 150}ms` }}
             >
-              <Card className="h-full group hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-500 hover:-translate-y-2 bg-slate-900/80 border-slate-700 hover:border-cyan-500/50 backdrop-blur-sm overflow-hidden">
-                <div className="aspect-video bg-gradient-to-br from-cyan-500 to-violet-500 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors duration-300" />
+              <Card className="h-full group hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-500 hover:-translate-y-2 bg-slate-900/50 border-slate-700/50 hover:border-cyan-500/50 backdrop-blur-sm overflow-hidden">
+                <div className="aspect-video bg-gradient-to-br from-cyan-500/20 to-violet-500/20 relative overflow-hidden border-b border-slate-700/50">
+                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-violet-500/10" />
                   <div className="absolute bottom-4 left-4">
-                    <Badge className="bg-white/20 text-white border-white/30 backdrop-blur-sm">
+                    <Badge className="bg-slate-900/50 text-cyan-400 border-cyan-400/50 backdrop-blur-sm">
                       {post.category}
                     </Badge>
                   </div>
                 </div>
                 
                 <CardHeader className="pb-4">
-                  <CardTitle className="text-lg group-hover:text-cyan-400 transition-colors duration-300 line-clamp-2">
+                  <CardTitle className="text-lg text-slate-100 group-hover:text-cyan-400 transition-colors duration-300 line-clamp-2">
                     {post.title}
                   </CardTitle>
-                  <CardDescription className="text-sm text-slate-400 line-clamp-3">
+                  <CardDescription className="text-sm text-slate-300 line-clamp-3">
                     {post.excerpt}
                   </CardDescription>
                 </CardHeader>
@@ -158,11 +158,21 @@ export const Blog = () => {
                   
                   <div className="flex flex-wrap gap-2 mb-4">
                     {post.tags.slice(0, 3).map((tag, tagIndex) => (
-                      <Badge key={tagIndex} variant="secondary" className="text-xs bg-slate-800 text-slate-300 border-slate-600">
+                      <Badge key={tagIndex} variant="secondary" className="text-xs bg-slate-800/50 text-slate-300 border-slate-600/50">
                         {tag}
                       </Badge>
                     ))}
                   </div>
+                  
+                  <Button 
+                    className="w-full bg-gradient-to-r from-cyan-500 to-violet-500 hover:from-cyan-600 hover:to-violet-600 text-white border-0 hover:scale-105 transition-all duration-300 group/btn shadow-lg hover:shadow-cyan-500/25"
+                    asChild
+                  >
+                    <a href={post.url} target="_blank" rel="noopener noreferrer">
+                      Read Article
+                      <ExternalLink className="ml-2 w-4 h-4 group-hover/btn:scale-110 transition-transform duration-300" />
+                    </a>
+                  </Button>
                 </CardContent>
               </Card>
             </div>

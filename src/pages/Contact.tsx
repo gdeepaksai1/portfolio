@@ -48,7 +48,7 @@ export const Contact = () => {
             <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-violet-400 bg-clip-text text-transparent">
               Let's Connect
             </h1>
-            <p className="text-xl text-slate-400 max-w-2xl mx-auto">
+            <p className="text-xl text-slate-300 max-w-2xl mx-auto">
               Ready to discuss data engineering opportunities, collaborations, or just want to chat about the latest in ML and cloud technologies?
             </p>
           </div>
@@ -57,7 +57,7 @@ export const Contact = () => {
             {contactMethods.map((method, index) => (
               <Card 
                 key={index}
-                className={`group hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-500 hover:-translate-y-2 bg-slate-900/80 border-slate-700 hover:border-cyan-500/50 backdrop-blur-sm animate-fade-in`}
+                className={`group hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-500 hover:-translate-y-2 bg-slate-900/50 border-slate-700/50 hover:border-cyan-500/50 backdrop-blur-sm animate-fade-in`}
                 style={{ animationDelay: `${index * 200}ms` }}
               >
                 <CardHeader className="pb-4">
@@ -66,10 +66,10 @@ export const Contact = () => {
                       <method.icon className="w-6 h-6 text-cyan-400 group-hover:scale-110 transition-transform duration-300" />
                     </div>
                     <div>
-                      <CardTitle className="text-lg group-hover:text-cyan-400 transition-colors duration-300">
+                      <CardTitle className="text-lg text-slate-100 group-hover:text-cyan-400 transition-colors duration-300">
                         {method.label}
                       </CardTitle>
-                      <CardDescription className="text-slate-400">
+                      <CardDescription className="text-slate-300">
                         {method.description}
                       </CardDescription>
                     </div>
@@ -97,12 +97,12 @@ export const Contact = () => {
           </div>
 
           <div className="text-center">
-            <Card className="bg-slate-900/80 border-slate-700 backdrop-blur-sm animate-fade-in" style={{ animationDelay: "800ms" }}>
+            <Card className="bg-slate-900/50 border-slate-700/50 backdrop-blur-sm animate-fade-in" style={{ animationDelay: "800ms" }}>
               <CardHeader>
                 <CardTitle className="text-2xl bg-gradient-to-r from-cyan-400 to-violet-400 bg-clip-text text-transparent">
                   Open to New Opportunities
                 </CardTitle>
-                <CardDescription className="text-lg text-slate-300">
+                <CardDescription className="text-lg text-slate-200">
                   I'm always interested in discussing new challenges in data engineering, ML pipeline architecture, and cloud-native solutions.
                 </CardDescription>
               </CardHeader>
@@ -111,7 +111,7 @@ export const Contact = () => {
                   <Button 
                     asChild 
                     size="lg" 
-                    className="bg-gradient-to-r from-cyan-500 to-violet-500 hover:from-cyan-600 hover:to-violet-600 text-white border-0 hover:scale-105 transition-all duration-300"
+                    className="bg-gradient-to-r from-cyan-500 to-violet-500 hover:from-cyan-600 hover:to-violet-600 text-white border-0 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-cyan-500/25"
                   >
                     <a href="mailto:guntreddideepaksai@gmail.com">
                       Send an Email
@@ -121,7 +121,7 @@ export const Contact = () => {
                     asChild 
                     variant="outline" 
                     size="lg" 
-                    className="border-slate-600 text-slate-300 hover:bg-slate-800 hover:border-cyan-400 hover:text-cyan-400 hover:scale-105 transition-all duration-300"
+                    className="border-slate-600 text-slate-300 hover:bg-slate-800/50 hover:border-cyan-400 hover:text-cyan-400 hover:scale-105 transition-all duration-300 backdrop-blur-sm"
                   >
                     <a href="https://www.linkedin.com/in/deepak-sai-guntreddi-38b746369/" target="_blank" rel="noopener noreferrer">
                       Connect on LinkedIn

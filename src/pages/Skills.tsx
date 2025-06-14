@@ -2,51 +2,78 @@
 import { useState, useEffect, useRef } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 
 const skillCategories = [
   {
-    category: "Programming & Scripting",
+    category: "Programming",
     skills: [
-      { name: "Python", level: 95, description: "Advanced data processing, ML, and automation" },
-      { name: "SQL", level: 90, description: "Complex queries, optimization, and database design" },
-      { name: "R", level: 70, description: "Statistical analysis and data visualization" },
-      { name: "Scala", level: 65, description: "Big data processing with Spark" }
+      { name: "Python", level: 95, proficiency: "Expert" },
+      { name: "SQL", level: 95, proficiency: "Expert" }
     ]
   },
   {
-    category: "Data Engineering & ETL",
+    category: "ETL & Data Engineering",
     skills: [
-      { name: "Apache Airflow", level: 90, description: "Workflow orchestration and scheduling" },
-      { name: "Apache Spark", level: 85, description: "Large-scale data processing" },
-      { name: "dbt", level: 88, description: "Data transformation and modeling" },
-      { name: "Kafka", level: 75, description: "Real-time data streaming" }
+      { name: "Apache Airflow", level: 90, proficiency: "Advanced" },
+      { name: "Apache Spark", level: 85, proficiency: "Advanced" },
+      { name: "dbt", level: 88, proficiency: "Advanced" }
     ]
   },
   {
-    category: "Cloud & Data Platforms",
+    category: "Cloud Platforms",
     skills: [
-      { name: "AWS", level: 85, description: "S3, Glue, Lambda, Redshift" },
-      { name: "GCP", level: 82, description: "BigQuery, Dataflow, Cloud Storage" },
-      { name: "Snowflake", level: 90, description: "Data warehousing and optimization" },
-      { name: "Azure", level: 70, description: "Data Factory and Analytics" }
+      { name: "AWS (S3, Glue, Lambda, Textract)", level: 85, proficiency: "Advanced" },
+      { name: "GCP (BigQuery, Dataflow)", level: 82, proficiency: "Advanced" }
     ]
   },
   {
-    category: "Machine Learning",
+    category: "Data Warehousing",
     skills: [
-      { name: "Scikit-learn", level: 85, description: "Classical ML algorithms and modeling" },
-      { name: "XGBoost", level: 80, description: "Gradient boosting and ensemble methods" },
-      { name: "MLflow", level: 75, description: "ML lifecycle management" },
-      { name: "SHAP/LIME", level: 78, description: "Model interpretability and explainability" }
+      { name: "Snowflake", level: 90, proficiency: "Advanced" },
+      { name: "Amazon Redshift", level: 85, proficiency: "Advanced" },
+      { name: "Google BigQuery", level: 88, proficiency: "Advanced" }
     ]
   },
   {
     category: "Visualization & BI",
     skills: [
-      { name: "Tableau", level: 88, description: "Advanced dashboards and analytics" },
-      { name: "Power BI", level: 82, description: "Business intelligence and reporting" },
-      { name: "Plotly", level: 75, description: "Interactive data visualizations" },
-      { name: "D3.js", level: 65, description: "Custom web-based visualizations" }
+      { name: "Tableau", level: 88, proficiency: "Advanced" },
+      { name: "Power BI", level: 82, proficiency: "Advanced" }
+    ]
+  },
+  {
+    category: "DevOps & Tools",
+    skills: [
+      { name: "Docker", level: 75, proficiency: "Intermediate" },
+      { name: "Git", level: 85, proficiency: "Intermediate" },
+      { name: "REST APIs", level: 80, proficiency: "Intermediate" }
+    ]
+  },
+  {
+    category: "Machine Learning",
+    skills: [
+      { name: "Scikit-learn", level: 75, proficiency: "Intermediate" },
+      { name: "MLflow", level: 70, proficiency: "Intermediate" },
+      { name: "XGBoost", level: 75, proficiency: "Intermediate" },
+      { name: "SHAP", level: 70, proficiency: "Intermediate" }
+    ]
+  },
+  {
+    category: "Data Modeling & Compliance",
+    skills: [
+      { name: "Star Schema Design", level: 95, proficiency: "Expert" },
+      { name: "SCD Type 2", level: 90, proficiency: "Expert" },
+      { name: "RBAC", level: 88, proficiency: "Expert" },
+      { name: "Great Expectations", level: 85, proficiency: "Advanced" }
+    ]
+  },
+  {
+    category: "Soft Skills",
+    skills: [
+      { name: "Communication", level: 90, proficiency: "Advanced" },
+      { name: "Mentoring", level: 85, proficiency: "Advanced" },
+      { name: "Problem-solving", level: 95, proficiency: "Expert" }
     ]
   }
 ];
@@ -54,7 +81,13 @@ const skillCategories = [
 export const Skills = () => {
   const [visibleCategories, setVisibleCategories] = useState<Set<number>>(new Set());
   const [animatedSkills, setAnimatedSkills] = useState<Set<string>>(new Set());
+  const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const observerRef = useRef<IntersectionObserver>();
+
+  const categories = ["All", ...skillCategories.map(cat => cat.category)];
+  const filteredCategories = selectedCategory === "All" 
+    ? skillCategories 
+    : skillCategories.filter(cat => cat.category === selectedCategory);
 
   useEffect(() => {
     observerRef.current = new IntersectionObserver(
@@ -65,7 +98,7 @@ export const Skills = () => {
             setVisibleCategories(prev => new Set([...prev, index]));
             
             setTimeout(() => {
-              const categorySkills = skillCategories[index].skills.map(skill => `${index}-${skill.name}`);
+              const categorySkills = filteredCategories[index]?.skills.map(skill => `${index}-${skill.name}`) || [];
               setAnimatedSkills(prev => new Set([...prev, ...categorySkills]));
             }, 300);
           }
@@ -75,7 +108,7 @@ export const Skills = () => {
     );
 
     return () => observerRef.current?.disconnect();
-  }, []);
+  }, [filteredCategories]);
 
   const categoryRef = (el: HTMLDivElement | null, index: number) => {
     if (el && observerRef.current) {
@@ -91,13 +124,31 @@ export const Skills = () => {
           <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-violet-400 bg-clip-text text-transparent">
             Technical Expertise
           </h1>
-          <p className="text-xl text-slate-400 max-w-2xl mx-auto">
+          <p className="text-xl text-slate-300 max-w-2xl mx-auto">
             Comprehensive skill set spanning data engineering, cloud platforms, and machine learning
           </p>
         </div>
 
+        {/* Category Filter */}
+        <div className="flex flex-wrap justify-center gap-3 mb-12">
+          {categories.map((category) => (
+            <Button
+              key={category}
+              variant={selectedCategory === category ? "default" : "outline"}
+              onClick={() => setSelectedCategory(category)}
+              className={`transition-all duration-300 hover:scale-105 ${
+                selectedCategory === category
+                  ? "bg-gradient-to-r from-cyan-500 to-violet-500 text-white border-0 shadow-lg shadow-cyan-500/25"
+                  : "border-slate-600 text-slate-300 hover:bg-slate-800/50 hover:border-cyan-400 hover:text-cyan-400 backdrop-blur-sm"
+              }`}
+            >
+              {category}
+            </Button>
+          ))}
+        </div>
+
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {skillCategories.map((category, categoryIndex) => (
+          {filteredCategories.map((category, categoryIndex) => (
             <div
               key={categoryIndex}
               ref={(el) => categoryRef(el, categoryIndex)}
@@ -108,9 +159,9 @@ export const Skills = () => {
               }`}
               style={{ transitionDelay: `${categoryIndex * 150}ms` }}
             >
-              <Card className="h-full group hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-500 hover:-translate-y-2 bg-slate-900/80 border-slate-700 hover:border-cyan-500/50 backdrop-blur-sm">
+              <Card className="h-full group hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-500 hover:-translate-y-2 bg-slate-900/50 border-slate-700/50 hover:border-cyan-500/50 backdrop-blur-sm">
                 <CardHeader className="pb-6">
-                  <CardTitle className="text-xl group-hover:text-cyan-400 transition-colors duration-300">
+                  <CardTitle className="text-xl text-slate-100 group-hover:text-cyan-400 transition-colors duration-300">
                     {category.category}
                   </CardTitle>
                 </CardHeader>
@@ -126,25 +177,27 @@ export const Skills = () => {
                             <span className="font-medium text-slate-200 group-hover/skill:text-cyan-400 transition-colors duration-200">
                               {skill.name}
                             </span>
-                            <Badge variant="outline" className="text-xs border-slate-600 text-slate-400">
-                              {skill.level}%
+                            <Badge 
+                              variant="outline" 
+                              className={`text-xs border-slate-600 ${
+                                skill.proficiency === "Expert" ? "text-cyan-400 border-cyan-400/50 bg-cyan-500/10" :
+                                skill.proficiency === "Advanced" ? "text-violet-400 border-violet-400/50 bg-violet-500/10" :
+                                "text-slate-400 border-slate-400/50 bg-slate-500/10"
+                              }`}
+                            >
+                              {skill.proficiency}
                             </Badge>
                           </div>
                           
                           <div className="relative">
-                            <div className="h-2 bg-slate-800 rounded-full overflow-hidden">
+                            <div className="h-2 bg-slate-800/50 rounded-full overflow-hidden">
                               <div
-                                className="h-full bg-gradient-to-r from-cyan-500 to-violet-500 rounded-full transition-all duration-1000 ease-out"
+                                className="h-full bg-gradient-to-r from-cyan-500 to-violet-500 rounded-full transition-all duration-1000 ease-out shadow-sm"
                                 style={{
                                   width: isAnimated ? `${skill.level}%` : '0%',
                                   transitionDelay: `${skillIndex * 100}ms`
                                 }}
                               />
-                            </div>
-                            
-                            <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-slate-800 border border-slate-700 text-slate-200 text-sm rounded-lg opacity-0 group-hover/skill:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap z-10">
-                              {skill.description}
-                              <div className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-slate-800" />
                             </div>
                           </div>
                         </div>

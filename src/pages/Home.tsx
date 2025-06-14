@@ -22,10 +22,10 @@ export const Home = () => {
             <h1 className="text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-cyan-400 via-violet-400 to-pink-400 bg-clip-text text-transparent animate-fade-in">
               Deepak Sai Guntreddi
             </h1>
-            <h2 className="text-2xl md:text-3xl text-slate-300 mb-8 animate-slide-in-left" style={{ animationDelay: "0.3s" }}>
+            <h2 className="text-2xl md:text-3xl text-slate-200 mb-8 animate-slide-in-left" style={{ animationDelay: "0.3s" }}>
               Senior Data Engineer
             </h2>
-            <p className="text-xl text-slate-400 max-w-3xl mx-auto mb-12 leading-relaxed animate-slide-in-right" style={{ animationDelay: "0.6s" }}>
+            <p className="text-xl text-slate-300 max-w-3xl mx-auto mb-12 leading-relaxed animate-slide-in-right" style={{ animationDelay: "0.6s" }}>
               8+ years of experience crafting scalable data engineering solutions, ML pipelines, and cloud-native architectures across healthcare, finance, and technology sectors.
             </p>
           </div>
@@ -37,7 +37,7 @@ export const Home = () => {
             <Button 
               asChild 
               size="lg" 
-              className="bg-gradient-to-r from-cyan-500 to-violet-500 hover:from-cyan-600 hover:to-violet-600 text-white border-0 hover:scale-105 transition-all duration-300 group px-8 py-6 text-lg"
+              className="bg-gradient-to-r from-cyan-500 to-violet-500 hover:from-cyan-600 hover:to-violet-600 text-white border-0 hover:scale-105 transition-all duration-300 group px-8 py-6 text-lg shadow-lg hover:shadow-cyan-500/25"
             >
               <Link to="/experience">
                 View Experience
@@ -48,7 +48,7 @@ export const Home = () => {
               asChild 
               variant="outline" 
               size="lg" 
-              className="border-slate-600 text-slate-300 hover:bg-slate-800 hover:border-cyan-400 hover:text-cyan-400 hover:scale-105 transition-all duration-300 px-8 py-6 text-lg"
+              className="border-slate-600 text-slate-200 hover:bg-slate-800/50 hover:border-cyan-400 hover:text-cyan-400 hover:scale-105 transition-all duration-300 px-8 py-6 text-lg backdrop-blur-sm"
             >
               <Link to="/contact">
                 Get In Touch
@@ -80,14 +80,14 @@ export const Home = () => {
             ].map((feature, index) => (
               <div
                 key={index}
-                className={`group p-8 rounded-2xl bg-slate-900/50 border border-slate-800 hover:border-cyan-500/50 hover:bg-slate-800/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/20 animate-fade-in`}
+                className={`group p-8 rounded-2xl bg-slate-900/40 border border-slate-700/50 hover:border-cyan-500/50 hover:bg-slate-800/40 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-cyan-500/10 animate-fade-in backdrop-blur-sm`}
                 style={{ animationDelay: feature.delay }}
               >
                 <feature.icon className="w-12 h-12 text-cyan-400 mb-6 group-hover:scale-110 group-hover:text-violet-400 transition-all duration-300" />
-                <h3 className="text-xl font-semibold text-white mb-4 group-hover:text-cyan-400 transition-colors duration-300">
+                <h3 className="text-xl font-semibold text-slate-100 mb-4 group-hover:text-cyan-400 transition-colors duration-300">
                   {feature.title}
                 </h3>
-                <p className="text-slate-400 leading-relaxed">
+                <p className="text-slate-300 leading-relaxed">
                   {feature.description}
                 </p>
               </div>
