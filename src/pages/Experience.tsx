@@ -7,23 +7,23 @@ import { Briefcase, Calendar } from "lucide-react";
 const experiences = [
   {
     title: "Senior Data Engineer",
-    company: "One Staff Medical",
+    company: "OneStaff Medical",
     period: "June 2023 – Present"
   },
   {
-    title: "Data Engineer",
+    title: "Data Engineer", 
     company: "Republic Services",
     period: "April 2021 – May 2023"
   },
   {
     title: "Data Analyst",
-    company: "Atlantic Union Bank",
-    period: "December 2019 – March 2021"
+    company: "Atlantic Union Bank", 
+    period: "Dec 2019 – March 2021"
   },
   {
     title: "Business Intelligence Analyst",
     company: "Depot",
-    period: "May 2018 – November 2019"
+    period: "May 2018 – Nov 2019"
   },
   {
     title: "Data Analytics Intern",
