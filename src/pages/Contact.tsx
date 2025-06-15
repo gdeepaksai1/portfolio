@@ -1,10 +1,11 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Mail, Phone, Send, Linkedin, MessageSquare, CheckCircle, Clock, MapPin, Calendar, User, Briefcase } from "lucide-react";
+import { Mail, Phone, Send, Linkedin, MessageSquare, CheckCircle, Calendar, User, Briefcase } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 export const Contact = () => {
@@ -61,38 +62,21 @@ export const Contact = () => {
     },
     {
       icon: Phone,
-      label: "Phone & LinkedIn",
+      label: "Phone",
       value: "+1 (402) 819-4838",
       href: "tel:+14028194838",
       description: "Available Mon-Fri, 9 AM - 6 PM CST",
       gradient: "from-violet-500/20 to-purple-500/20",
-      hoverColor: "hover:border-violet-500/50",
-      secondaryAction: {
-        icon: Linkedin,
-        href: "https://www.linkedin.com/in/deepak-sai-guntreddi-5a37951ab/",
-        label: "LinkedIn Profile"
-      }
-    }
-  ];
-
-  const professionalInfo = [
-    {
-      icon: Briefcase,
-      label: "Current Role",
-      value: "Senior Data Engineer",
-      description: "8+ years experience"
+      hoverColor: "hover:border-violet-500/50"
     },
     {
-      icon: MapPin,
-      label: "Time Zone",
-      value: "Central Time (CST)",
-      description: "UTC-6"
-    },
-    {
-      icon: Clock,
-      label: "Availability",
-      value: "Available for projects",
-      description: "Open to new opportunities"
+      icon: Linkedin,
+      label: "LinkedIn",
+      value: "Connect professionally",
+      href: "https://www.linkedin.com/in/deepak-sai-guntreddi-5a37951ab/",
+      description: "Professional networking & updates",
+      gradient: "from-blue-500/20 to-indigo-500/20",
+      hoverColor: "hover:border-blue-500/50"
     }
   ];
 
@@ -274,43 +258,7 @@ export const Contact = () => {
                           {item.value}
                         </a>
                         <p className="text-xs text-slate-500 mt-1">{item.description}</p>
-                        
-                        {/* Secondary action for phone/LinkedIn combo */}
-                        {item.secondaryAction && (
-                          <div className="mt-2">
-                            <a
-                              href={item.secondaryAction.href}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-2 text-xs text-violet-400 hover:text-violet-300 transition-colors duration-300"
-                            >
-                              <item.secondaryAction.icon className="w-3 h-3" />
-                              {item.secondaryAction.label}
-                            </a>
-                          </div>
-                        )}
                       </div>
-                    </div>
-                  </div>
-                ))}
-              </CardContent>
-            </Card>
-
-            {/* Professional Info */}
-            <Card className="bg-gradient-to-br from-cyan-500/10 to-violet-500/10 border-cyan-500/30 backdrop-blur-sm">
-              <CardHeader>
-                <CardTitle className="text-lg text-slate-100">Professional Details</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {professionalInfo.map((item, index) => (
-                  <div key={index} className="flex items-start gap-3 group">
-                    <div className="p-2 bg-slate-800/30 rounded-lg group-hover:scale-110 transition-transform duration-300">
-                      <item.icon className="w-4 h-4 text-cyan-400" />
-                    </div>
-                    <div className="flex-1">
-                      <p className="text-sm text-slate-400">{item.label}</p>
-                      <p className="text-slate-200 font-medium">{item.value}</p>
-                      <p className="text-xs text-slate-500">{item.description}</p>
                     </div>
                   </div>
                 ))}
