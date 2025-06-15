@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Mail, Phone, Send, Linkedin, MessageSquare, CheckCircle, Clock, MapPin, Calendar, User, Briefcase } from "lucide-react";
+import { Mail, Phone, Send, Linkedin, MessageSquare, CheckCircle, Clock, MapPin, Calendar, User, Briefcase, Github, FileText } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 export const Contact = () => {
@@ -23,7 +23,6 @@ export const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
     try {
       await new Promise(resolve => setTimeout(resolve, 2000));
       
@@ -63,21 +62,35 @@ export const Contact = () => {
     },
     {
       icon: Phone,
-      label: "Phone",
+      label: "Phone & LinkedIn",
       value: "+1 (402) 819-4838",
       href: "tel:+14028194838",
       description: "Available Mon-Fri, 9 AM - 6 PM CST",
       gradient: "from-violet-500/20 to-purple-500/20",
-      hoverColor: "hover:border-violet-500/50"
+      hoverColor: "hover:border-violet-500/50",
+      secondaryAction: {
+        icon: Linkedin,
+        href: "https://www.linkedin.com/in/deepak-sai-guntreddi-5a37951ab/",
+        label: "LinkedIn Profile"
+      }
     },
     {
-      icon: Linkedin,
-      label: "LinkedIn",
-      value: "Connect with me",
-      href: "https://www.linkedin.com/in/deepak-sai-guntreddi-5a37951ab/",
-      description: "Professional networking",
-      gradient: "from-blue-500/20 to-indigo-500/20",
-      hoverColor: "hover:border-blue-500/50"
+      icon: Github,
+      label: "GitHub",
+      value: "View my repositories",
+      href: "https://github.com/deepaksai-guntreddi",
+      description: "Open source projects & code samples",
+      gradient: "from-slate-500/20 to-gray-500/20",
+      hoverColor: "hover:border-slate-500/50"
+    },
+    {
+      icon: FileText,
+      label: "Medium Blog",
+      value: "Technical articles",
+      href: "https://medium.com/@guntreddideepaksai/event-driven-machine-learning-pipelines-with-kafka-and-feature-stores-1cf94984bf76",
+      description: "Data engineering insights & tutorials",
+      gradient: "from-green-500/20 to-emerald-500/20",
+      hoverColor: "hover:border-green-500/50"
     }
   ];
 
@@ -108,7 +121,7 @@ export const Contact = () => {
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-20 left-20 w-96 h-96 bg-gradient-to-r from-cyan-500/10 to-violet-500/10 rounded-full blur-3xl animate-pulse" />
         <div className="absolute bottom-20 right-20 w-80 h-80 bg-gradient-to-r from-violet-500/10 to-pink-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "2s" }} />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-blue-500/5 to-cyan-500/5 rounded-full blur-3xl animate-float" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-blue-500/5 to-cyan-500/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "4s" }} />
       </div>
 
       <div className="container mx-auto px-6 relative">
@@ -122,7 +135,7 @@ export const Contact = () => {
           <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-violet-400 bg-clip-text text-transparent animate-fade-in">
             Let's Connect
           </h1>
-          <p className="text-xl text-slate-300 max-w-2xl mx-auto animate-slide-in-left">
+          <p className="text-xl text-slate-300 max-w-2xl mx-auto">
             Ready to discuss your next data engineering project? I'd love to hear from you.
           </p>
         </div>
@@ -259,25 +272,45 @@ export const Contact = () => {
               </CardHeader>
               <CardContent className="space-y-4">
                 {contactInfo.map((item, index) => (
-                  <a
+                  <div
                     key={index}
-                    href={item.href}
-                    target={item.label === "LinkedIn" ? "_blank" : undefined}
-                    rel={item.label === "LinkedIn" ? "noopener noreferrer" : undefined}
-                    className={`flex items-start gap-4 group cursor-pointer hover:bg-slate-800/30 p-4 rounded-xl transition-all duration-300 border border-transparent ${item.hoverColor} relative overflow-hidden`}
+                    className={`group cursor-pointer hover:bg-slate-800/30 p-4 rounded-xl transition-all duration-300 border border-transparent ${item.hoverColor} relative overflow-hidden`}
                   >
                     <div className={`absolute inset-0 bg-gradient-to-r ${item.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-                    <div className="relative z-10 p-2 bg-slate-800/50 rounded-lg group-hover:scale-110 transition-transform duration-300">
-                      <item.icon className="w-5 h-5 text-cyan-400" />
+                    
+                    <div className="relative z-10 flex items-start gap-4">
+                      <div className="p-2 bg-slate-800/50 rounded-lg group-hover:scale-110 transition-transform duration-300">
+                        <item.icon className="w-5 h-5 text-cyan-400" />
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-sm text-slate-400 mb-1">{item.label}</p>
+                        <a
+                          href={item.href}
+                          target={item.href.startsWith("http") ? "_blank" : undefined}
+                          rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                          className="text-slate-200 hover:text-cyan-400 transition-colors duration-300 font-medium block"
+                        >
+                          {item.value}
+                        </a>
+                        <p className="text-xs text-slate-500 mt-1">{item.description}</p>
+                        
+                        {/* Secondary action for phone/LinkedIn combo */}
+                        {item.secondaryAction && (
+                          <div className="mt-2">
+                            <a
+                              href={item.secondaryAction.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 text-xs text-violet-400 hover:text-violet-300 transition-colors duration-300"
+                            >
+                              <item.secondaryAction.icon className="w-3 h-3" />
+                              {item.secondaryAction.label}
+                            </a>
+                          </div>
+                        )}
+                      </div>
                     </div>
-                    <div className="relative z-10 flex-1">
-                      <p className="text-sm text-slate-400 mb-1">{item.label}</p>
-                      <p className="text-slate-200 hover:text-cyan-400 transition-colors duration-300 font-medium">
-                        {item.value}
-                      </p>
-                      <p className="text-xs text-slate-500 mt-1">{item.description}</p>
-                    </div>
-                  </a>
+                  </div>
                 ))}
               </CardContent>
             </Card>
