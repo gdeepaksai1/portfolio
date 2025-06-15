@@ -25,8 +25,8 @@ const skillCategories = [
   {
     category: "Cloud Platforms",
     skills: [
-      { name: "AWS (S3, Glue, Lambda, Textract)", level: 85, proficiency: "Advanced" },
-      { name: "GCP (BigQuery, Dataflow)", level: 82, proficiency: "Advanced" },
+      { name: "AWS", level: 85, proficiency: "Advanced" },
+      { name: "GCP", level: 82, proficiency: "Advanced" },
       { name: "Azure", level: 70, proficiency: "Intermediate" }
     ]
   },
@@ -47,37 +47,12 @@ const skillCategories = [
     ]
   },
   {
-    category: "DevOps & Tools",
-    skills: [
-      { name: "Docker", level: 75, proficiency: "Intermediate" },
-      { name: "Git", level: 85, proficiency: "Advanced" },
-      { name: "REST APIs", level: 80, proficiency: "Intermediate" }
-    ]
-  },
-  {
     category: "Machine Learning",
     skills: [
       { name: "Scikit-learn", level: 75, proficiency: "Intermediate" },
       { name: "MLflow", level: 70, proficiency: "Intermediate" },
       { name: "XGBoost", level: 75, proficiency: "Intermediate" },
       { name: "SHAP", level: 70, proficiency: "Intermediate" }
-    ]
-  },
-  {
-    category: "Data Modeling & Compliance",
-    skills: [
-      { name: "Star Schema Design", level: 95, proficiency: "Expert" },
-      { name: "SCD Type 2", level: 90, proficiency: "Expert" },
-      { name: "RBAC", level: 88, proficiency: "Expert" },
-      { name: "Great Expectations", level: 85, proficiency: "Advanced" }
-    ]
-  },
-  {
-    category: "Soft Skills",
-    skills: [
-      { name: "Communication", level: 90, proficiency: "Advanced" },
-      { name: "Mentoring", level: 85, proficiency: "Advanced" },
-      { name: "Problem-solving", level: 95, proficiency: "Expert" }
     ]
   }
 ];
@@ -88,7 +63,7 @@ export const Skills = () => {
   const observerRef = useRef<IntersectionObserver>();
 
   useEffect(() => {
-    console.log("Skills component mounted, categories:", skillCategories.length);
+    console.log("Skills component mounted");
     
     observerRef.current = new IntersectionObserver(
       (entries) => {
@@ -100,14 +75,22 @@ export const Skills = () => {
             
             setTimeout(() => {
               const categorySkills = skillCategories[index]?.skills.map(skill => `${index}-${skill.name}`) || [];
-              console.log("Animating skills:", categorySkills);
               setAnimatedSkills(prev => new Set([...prev, ...categorySkills]));
             }, 300);
           }
         });
       },
-      { threshold: 0.3 }
+      { threshold: 0.1 }
     );
+
+    // Make all categories visible immediately for testing
+    setTimeout(() => {
+      setVisibleCategories(new Set([0, 1, 2, 3, 4, 5]));
+      const allSkills = skillCategories.flatMap((cat, catIndex) => 
+        cat.skills.map(skill => `${catIndex}-${skill.name}`)
+      );
+      setAnimatedSkills(new Set(allSkills));
+    }, 100);
 
     return () => observerRef.current?.disconnect();
   }, []);
@@ -119,12 +102,10 @@ export const Skills = () => {
     }
   };
 
-  console.log("Rendering Skills component with", skillCategories.length, "categories");
-
   return (
-    <div className="min-h-screen pt-24 pb-16">
+    <div className="min-h-screen pt-24 pb-16 bg-slate-950">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16 animate-fade-in">
+        <div className="text-center mb-16">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-violet-400 bg-clip-text text-transparent">
             Technical Expertise
           </h1>
@@ -145,7 +126,7 @@ export const Skills = () => {
               }`}
               style={{ transitionDelay: `${categoryIndex * 150}ms` }}
             >
-              <Card className="h-full group hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-500 hover:-translate-y-2 bg-slate-900/50 border-slate-700/50 hover:border-cyan-500/50 backdrop-blur-sm">
+              <Card className="h-full group hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-500 hover:-translate-y-2 bg-slate-900/80 border-slate-700/50 hover:border-cyan-500/50 backdrop-blur-sm">
                 <CardHeader className="pb-6">
                   <CardTitle className="text-xl text-slate-100 group-hover:text-cyan-400 transition-colors duration-300">
                     {category.category}
@@ -159,13 +140,13 @@ export const Skills = () => {
                       
                       return (
                         <div key={skillIndex} className="group/skill">
-                          <div className="flex justify-between items-center mb-2">
+                          <div className="flex justify-between items-center mb-3">
                             <span className="font-medium text-slate-200 group-hover/skill:text-cyan-400 transition-colors duration-200">
                               {skill.name}
                             </span>
                             <Badge 
                               variant="outline" 
-                              className={`text-xs border-slate-600 ${
+                              className={`text-xs ${
                                 skill.proficiency === "Expert" ? "text-cyan-400 border-cyan-400/50 bg-cyan-500/10" :
                                 skill.proficiency === "Advanced" ? "text-violet-400 border-violet-400/50 bg-violet-500/10" :
                                 "text-slate-400 border-slate-400/50 bg-slate-500/10"
@@ -176,7 +157,7 @@ export const Skills = () => {
                           </div>
                           
                           <div className="relative">
-                            <div className="h-2 bg-slate-800/50 rounded-full overflow-hidden">
+                            <div className="h-3 bg-slate-800/80 rounded-full overflow-hidden">
                               <div
                                 className="h-full bg-gradient-to-r from-cyan-500 to-violet-500 rounded-full transition-all duration-1000 ease-out shadow-sm"
                                 style={{
@@ -184,6 +165,9 @@ export const Skills = () => {
                                   transitionDelay: `${skillIndex * 100}ms`
                                 }}
                               />
+                            </div>
+                            <div className="text-xs text-slate-400 mt-1 text-right">
+                              {skill.level}%
                             </div>
                           </div>
                         </div>
