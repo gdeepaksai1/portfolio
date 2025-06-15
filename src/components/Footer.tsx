@@ -41,7 +41,7 @@ export const Footer = () => {
               asChild 
               className="hover:bg-cyan-500/20 hover:text-cyan-400 transition-all duration-300 hover:scale-110 group"
             >
-              <a href="https://www.linkedin.com/in/deepak-sai-guntreddi-38b746369/" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.linkedin.com/in/deepak-sai-guntreddi-5a37951ab/" target="_blank" rel="noopener noreferrer">
                 <Linkedin className="w-5 h-5 group-hover:animate-pulse" />
               </a>
             </Button>
