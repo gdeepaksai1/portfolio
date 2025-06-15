@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Mail, MapPin, Phone, Send, Github, Linkedin, MessageSquare, CheckCircle, AlertCircle } from "lucide-react";
+import { Mail, Phone, Send, Linkedin, MessageSquare, CheckCircle } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 export const Contact = () => {
@@ -54,20 +54,14 @@ export const Contact = () => {
     {
       icon: Mail,
       label: "Email",
-      value: "deepaksai.guntreddi@email.com",
-      href: "mailto:deepaksai.guntreddi@email.com"
+      value: "guntreddideepaksai@gmail.com",
+      href: "mailto:guntreddideepaksai@gmail.com"
     },
     {
       icon: Phone,
       label: "Phone",
-      value: "+1 (555) 123-4567",
-      href: "tel:+15551234567"
-    },
-    {
-      icon: MapPin,
-      label: "Location",
-      value: "Omaha, NE",
-      href: null
+      value: "+1 (402) 819-4838",
+      href: "tel:+14028194838"
     }
   ];
 
@@ -75,12 +69,7 @@ export const Contact = () => {
     {
       icon: Linkedin,
       label: "LinkedIn",
-      href: "https://linkedin.com/in/deepaksai-guntreddi"
-    },
-    {
-      icon: Github,
-      label: "GitHub", 
-      href: "https://github.com/deepaksai-guntreddi"
+      href: "https://www.linkedin.com/in/deepak-sai-guntreddi-5a37951ab/"
     }
   ];
 
@@ -206,13 +195,9 @@ export const Contact = () => {
                     </div>
                     <div>
                       <p className="text-sm text-slate-400">{item.label}</p>
-                      {item.href ? (
-                        <a href={item.href} className="text-slate-200 hover:text-cyan-400 transition-colors duration-300">
-                          {item.value}
-                        </a>
-                      ) : (
-                        <p className="text-slate-200">{item.value}</p>
-                      )}
+                      <a href={item.href} className="text-slate-200 hover:text-cyan-400 transition-colors duration-300">
+                        {item.value}
+                      </a>
                     </div>
                   </div>
                 ))}
