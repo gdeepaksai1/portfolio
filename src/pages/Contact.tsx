@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -71,9 +72,9 @@ export const Contact = () => {
     {
       icon: Linkedin,
       label: "LinkedIn",
-      value: "Connect professionally",
+      value: "linkedin.com/in/deepak-sai-guntreddi-5a37951ab",
       href: "https://www.linkedin.com/in/deepak-sai-guntreddi-5a37951ab/",
-      description: "Professional networking & updates",
+      description: "Professional networking",
       gradient: "from-blue-500/20 to-indigo-500/20",
       hoverColor: "hover:border-blue-500/50"
     }
