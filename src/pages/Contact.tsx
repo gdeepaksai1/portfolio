@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Mail, Phone, Send, Linkedin, MessageSquare, CheckCircle, Clock, MapPin, Calendar, User, Briefcase, Github, FileText } from "lucide-react";
+import { Mail, Phone, Send, Linkedin, MessageSquare, CheckCircle, Clock, MapPin, Calendar, User, Briefcase } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 export const Contact = () => {
@@ -62,35 +62,21 @@ export const Contact = () => {
     },
     {
       icon: Phone,
-      label: "Phone & LinkedIn",
+      label: "Phone",
       value: "+1 (402) 819-4838",
       href: "tel:+14028194838",
       description: "Available Mon-Fri, 9 AM - 6 PM CST",
       gradient: "from-violet-500/20 to-purple-500/20",
-      hoverColor: "hover:border-violet-500/50",
-      secondaryAction: {
-        icon: Linkedin,
-        href: "https://www.linkedin.com/in/deepak-sai-guntreddi-5a37951ab/",
-        label: "LinkedIn Profile"
-      }
+      hoverColor: "hover:border-violet-500/50"
     },
     {
-      icon: Github,
-      label: "GitHub",
-      value: "View my repositories",
-      href: "https://github.com/deepaksai-guntreddi",
-      description: "Open source projects & code samples",
-      gradient: "from-slate-500/20 to-gray-500/20",
-      hoverColor: "hover:border-slate-500/50"
-    },
-    {
-      icon: FileText,
-      label: "Medium Blog",
-      value: "Technical articles",
-      href: "https://medium.com/@guntreddideepaksai/event-driven-machine-learning-pipelines-with-kafka-and-feature-stores-1cf94984bf76",
-      description: "Data engineering insights & tutorials",
-      gradient: "from-green-500/20 to-emerald-500/20",
-      hoverColor: "hover:border-green-500/50"
+      icon: Linkedin,
+      label: "LinkedIn",
+      value: "Connect professionally",
+      href: "https://www.linkedin.com/in/deepak-sai-guntreddi-5a37951ab/",
+      description: "Professional networking & updates",
+      gradient: "from-blue-500/20 to-indigo-500/20",
+      hoverColor: "hover:border-blue-500/50"
     }
   ];
 
@@ -293,21 +279,6 @@ export const Contact = () => {
                           {item.value}
                         </a>
                         <p className="text-xs text-slate-500 mt-1">{item.description}</p>
-                        
-                        {/* Secondary action for phone/LinkedIn combo */}
-                        {item.secondaryAction && (
-                          <div className="mt-2">
-                            <a
-                              href={item.secondaryAction.href}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-2 text-xs text-violet-400 hover:text-violet-300 transition-colors duration-300"
-                            >
-                              <item.secondaryAction.icon className="w-3 h-3" />
-                              {item.secondaryAction.label}
-                            </a>
-                          </div>
-                        )}
                       </div>
                     </div>
                   </div>
