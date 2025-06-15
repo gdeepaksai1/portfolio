@@ -2,14 +2,15 @@
 import { useState, useEffect, useRef } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 
 const skillCategories = [
   {
     category: "Programming",
     skills: [
       { name: "Python", level: 95, proficiency: "Expert" },
-      { name: "SQL", level: 95, proficiency: "Expert" }
+      { name: "SQL", level: 95, proficiency: "Expert" },
+      { name: "R", level: 70, proficiency: "Intermediate" },
+      { name: "Scala", level: 65, proficiency: "Intermediate" }
     ]
   },
   {
@@ -17,14 +18,16 @@ const skillCategories = [
     skills: [
       { name: "Apache Airflow", level: 90, proficiency: "Advanced" },
       { name: "Apache Spark", level: 85, proficiency: "Advanced" },
-      { name: "dbt", level: 88, proficiency: "Advanced" }
+      { name: "dbt", level: 88, proficiency: "Advanced" },
+      { name: "Kafka", level: 75, proficiency: "Intermediate" }
     ]
   },
   {
     category: "Cloud Platforms",
     skills: [
       { name: "AWS (S3, Glue, Lambda, Textract)", level: 85, proficiency: "Advanced" },
-      { name: "GCP (BigQuery, Dataflow)", level: 82, proficiency: "Advanced" }
+      { name: "GCP (BigQuery, Dataflow)", level: 82, proficiency: "Advanced" },
+      { name: "Azure", level: 70, proficiency: "Intermediate" }
     ]
   },
   {
@@ -39,14 +42,15 @@ const skillCategories = [
     category: "Visualization & BI",
     skills: [
       { name: "Tableau", level: 88, proficiency: "Advanced" },
-      { name: "Power BI", level: 82, proficiency: "Advanced" }
+      { name: "Power BI", level: 82, proficiency: "Advanced" },
+      { name: "Plotly", level: 75, proficiency: "Intermediate" }
     ]
   },
   {
     category: "DevOps & Tools",
     skills: [
       { name: "Docker", level: 75, proficiency: "Intermediate" },
-      { name: "Git", level: 85, proficiency: "Intermediate" },
+      { name: "Git", level: 85, proficiency: "Advanced" },
       { name: "REST APIs", level: 80, proficiency: "Intermediate" }
     ]
   },
@@ -81,17 +85,10 @@ const skillCategories = [
 export const Skills = () => {
   const [visibleCategories, setVisibleCategories] = useState<Set<number>>(new Set());
   const [animatedSkills, setAnimatedSkills] = useState<Set<string>>(new Set());
-  const [selectedCategory, setSelectedCategory] = useState<string>("All");
   const observerRef = useRef<IntersectionObserver>();
-
-  const categories = ["All", ...skillCategories.map(cat => cat.category)];
-  const filteredCategories = selectedCategory === "All" 
-    ? skillCategories 
-    : skillCategories.filter(cat => cat.category === selectedCategory);
 
   useEffect(() => {
     console.log("Skills component mounted, categories:", skillCategories.length);
-    console.log("Filtered categories:", filteredCategories.length);
     
     observerRef.current = new IntersectionObserver(
       (entries) => {
@@ -102,7 +99,7 @@ export const Skills = () => {
             setVisibleCategories(prev => new Set([...prev, index]));
             
             setTimeout(() => {
-              const categorySkills = filteredCategories[index]?.skills.map(skill => `${index}-${skill.name}`) || [];
+              const categorySkills = skillCategories[index]?.skills.map(skill => `${index}-${skill.name}`) || [];
               console.log("Animating skills:", categorySkills);
               setAnimatedSkills(prev => new Set([...prev, ...categorySkills]));
             }, 300);
@@ -113,7 +110,7 @@ export const Skills = () => {
     );
 
     return () => observerRef.current?.disconnect();
-  }, [filteredCategories]);
+  }, []);
 
   const categoryRef = (el: HTMLDivElement | null, index: number) => {
     if (el && observerRef.current) {
@@ -122,7 +119,7 @@ export const Skills = () => {
     }
   };
 
-  console.log("Rendering Skills component with", filteredCategories.length, "categories");
+  console.log("Rendering Skills component with", skillCategories.length, "categories");
 
   return (
     <div className="min-h-screen pt-24 pb-16">
@@ -136,29 +133,8 @@ export const Skills = () => {
           </p>
         </div>
 
-        {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
-          {categories.map((category) => (
-            <Button
-              key={category}
-              variant={selectedCategory === category ? "default" : "outline"}
-              onClick={() => {
-                console.log("Changing category to:", category);
-                setSelectedCategory(category);
-              }}
-              className={`transition-all duration-300 hover:scale-105 ${
-                selectedCategory === category
-                  ? "bg-gradient-to-r from-cyan-500 to-violet-500 text-white border-0 shadow-lg shadow-cyan-500/25"
-                  : "border-slate-600 text-slate-300 hover:bg-slate-800/50 hover:border-cyan-400 hover:text-cyan-400 backdrop-blur-sm"
-              }`}
-            >
-              {category}
-            </Button>
-          ))}
-        </div>
-
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {filteredCategories.map((category, categoryIndex) => (
+          {skillCategories.map((category, categoryIndex) => (
             <div
               key={categoryIndex}
               ref={(el) => categoryRef(el, categoryIndex)}
