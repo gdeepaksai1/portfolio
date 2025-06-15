@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -62,21 +61,17 @@ export const Contact = () => {
     },
     {
       icon: Phone,
-      label: "Phone",
+      label: "Phone & LinkedIn",
       value: "+1 (402) 819-4838",
       href: "tel:+14028194838",
       description: "Available Mon-Fri, 9 AM - 6 PM CST",
       gradient: "from-violet-500/20 to-purple-500/20",
-      hoverColor: "hover:border-violet-500/50"
-    },
-    {
-      icon: Linkedin,
-      label: "LinkedIn",
-      value: "Connect professionally",
-      href: "https://www.linkedin.com/in/deepak-sai-guntreddi-5a37951ab/",
-      description: "Professional networking & updates",
-      gradient: "from-blue-500/20 to-indigo-500/20",
-      hoverColor: "hover:border-blue-500/50"
+      hoverColor: "hover:border-violet-500/50",
+      secondaryAction: {
+        icon: Linkedin,
+        href: "https://www.linkedin.com/in/deepak-sai-guntreddi-5a37951ab/",
+        label: "LinkedIn Profile"
+      }
     }
   ];
 
@@ -279,6 +274,21 @@ export const Contact = () => {
                           {item.value}
                         </a>
                         <p className="text-xs text-slate-500 mt-1">{item.description}</p>
+                        
+                        {/* Secondary action for phone/LinkedIn combo */}
+                        {item.secondaryAction && (
+                          <div className="mt-2">
+                            <a
+                              href={item.secondaryAction.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 text-xs text-violet-400 hover:text-violet-300 transition-colors duration-300"
+                            >
+                              <item.secondaryAction.icon className="w-3 h-3" />
+                              {item.secondaryAction.label}
+                            </a>
+                          </div>
+                        )}
                       </div>
                     </div>
                   </div>
