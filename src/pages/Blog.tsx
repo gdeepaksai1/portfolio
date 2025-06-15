@@ -67,6 +67,14 @@ export const Blog = () => {
     : blogPosts.filter(post => post.category === selectedCategory);
 
   useEffect(() => {
+    console.log("Blog component mounted");
+    
+    // Make all posts visible immediately
+    setTimeout(() => {
+      const allPostIndices = Array.from({ length: filteredPosts.length }, (_, i) => i);
+      setVisiblePosts(new Set(allPostIndices));
+    }, 100);
+
     observerRef.current = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -80,7 +88,15 @@ export const Blog = () => {
     );
 
     return () => observerRef.current?.disconnect();
-  }, []);
+  }, [filteredPosts.length]);
+
+  // Update visible posts when category changes
+  useEffect(() => {
+    setTimeout(() => {
+      const allPostIndices = Array.from({ length: filteredPosts.length }, (_, i) => i);
+      setVisiblePosts(new Set(allPostIndices));
+    }, 100);
+  }, [selectedCategory, filteredPosts.length]);
 
   const postRef = (el: HTMLDivElement | null, index: number) => {
     if (el && observerRef.current) {
