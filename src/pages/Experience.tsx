@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { ExperienceHeader } from "@/components/experience/ExperienceHeader";
 import { ExperienceStats } from "@/components/experience/ExperienceStats";
 import { ExperienceTimeline } from "@/components/experience/ExperienceTimeline";
-import { ExperienceCard } from "@/components/experience/ExperienceCard";
 import { BackgroundAnimation } from "@/components/experience/BackgroundAnimation";
 
 const experiences = [
@@ -11,68 +10,31 @@ const experiences = [
     title: "Senior Data Engineer",
     company: "OneStaff Medical",
     period: "June 2023 – Present",
-    location: "Omaha, NE",
-    highlights: [
-      "Built scalable ETL pipelines using Airflow, PySpark, and dbt",
-      "Modeled historical data with SCD Type 2 in Snowflake",
-      "Integrated ML models using MLflow and served via REST APIs",
-      "Created recruiter dashboards in Tableau with candidate scoring",
-      "Optimized compute cost in Snowflake by 25%",
-      "Enforced HIPAA and SOC 2 security policies"
-    ]
+    location: "Omaha, NE"
   },
   {
     title: "Data Engineer", 
     company: "Republic Services",
     period: "April 2021 – May 2023",
-    location: "Phoenix, AZ",
-    highlights: [
-      "Built ETL jobs using Airflow, PySpark, and BigQuery",
-      "Developed ML models with XGBoost for route delay prediction",
-      "Served real-time predictions using Cloud Run APIs",
-      "Built dbt models for driver compliance and fuel efficiency",
-      "Integrated ArcGIS APIs for geospatial enrichment",
-      "Automated document parsing with Google Textract"
-    ]
+    location: "Phoenix, AZ"
   },
   {
     title: "Data Engineer",
     company: "Atlantic Union Bank", 
     period: "Dec 2019 – Mar 2021",
-    location: "Richmond, VA",
-    highlights: [
-      "Automated credit risk reports with Python and SQL",
-      "Modeled customer behavior marts in SQL Server",
-      "Built segmentation pipelines using Scikit-learn",
-      "Developed finance dashboards in Tableau",
-      "Integrated macroeconomic data using public APIs",
-      "Improved query runtime by 45% through optimization"
-    ]
+    location: "Richmond, VA"
   },
   {
     title: "Data Engineer",
     company: "Depot",
     period: "May 2018 – Nov 2019",
-    location: "Boca Raton, FL",
-    highlights: [
-      "Created ETL workflows for CRM and ticketing data",
-      "Built revenue dashboards in Power BI and Plotly",
-      "Defined RLS policies for sales data access",
-      "Conducted churn analysis using SQL segmentation",
-      "Automated Excel reports using Power Query and Python"
-    ]
+    location: "Boca Raton, FL"
   },
   {
     title: "Data Engineering Intern",
     company: "Tvisha Technologies",
     period: "Apr 2017 – May 2018",
-    location: "Hyderabad, India",
-    highlights: [
-      "Built SSIS pipelines to consolidate ERP and CRM data",
-      "Created dashboards in Power BI and Excel",
-      "Implemented RLS and interactive drill-downs",
-      "Cleaned and validated sales and inventory datasets"
-    ]
+    location: "Hyderabad, India"
   }
 ];
 
@@ -93,16 +55,42 @@ export const Experience = () => {
         
         <ExperienceTimeline>
           {experiences.map((exp, index) => (
-            <ExperienceCard
+            <div
               key={index}
-              title={exp.title}
-              company={exp.company}
-              period={exp.period}
-              location={exp.location}
-              highlights={exp.highlights}
-              index={index}
-              isVisible={visibleItems.has(index)}
-            />
+              className={`relative transition-all duration-700 transform ${
+                visibleItems.has(index) ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+              } animate-slide-in-left`}
+              style={{ transitionDelay: `${index * 200}ms`, animationDelay: `${0.6 + index * 0.2}s` }}
+            >
+              {/* Timeline dot with glow effect */}
+              <div className="absolute left-6 w-6 h-6 bg-gradient-to-r from-cyan-400 to-violet-400 rounded-full border-4 border-slate-950 z-10 animate-glow"></div>
+              
+              {/* Simple experience entry */}
+              <div className="ml-20">
+                <div className="group hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-500 hover:-translate-y-2 bg-slate-900/80 border border-slate-700/50 hover:border-cyan-500/50 backdrop-blur-sm relative overflow-hidden rounded-lg p-6">
+                  {/* Animated background gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-violet-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  
+                  <div className="relative z-10">
+                    <h3 className="text-2xl font-bold text-slate-100 group-hover:text-cyan-400 transition-colors duration-300 mb-2">
+                      {exp.title}
+                    </h3>
+                    <p className="text-lg font-semibold text-slate-200 group-hover:text-violet-400 transition-colors duration-300 mb-1">
+                      {exp.company}
+                    </p>
+                    <div className="flex items-center gap-4 text-sm text-slate-400">
+                      <span className="group-hover:text-slate-300 transition-colors duration-300">
+                        {exp.period}
+                      </span>
+                      <span className="text-slate-500">•</span>
+                      <span className="group-hover:text-slate-300 transition-colors duration-300">
+                        {exp.location}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           ))}
         </ExperienceTimeline>
       </div>
