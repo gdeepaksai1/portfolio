@@ -13,7 +13,8 @@ const blogPosts = [
     readTime: "12 min read",
     tags: ["Machine Learning", "Kafka", "Data Engineering"],
     category: "Tech",
-    image: "/placeholder.svg"
+    image: "/lovable-uploads/71a7f0a2-f035-40db-ac6f-05b74791045c.png",
+    url: "https://medium.com/@guntreddideepaksai/event-driven-machine-learning-pipelines-with-kafka-and-feature-stores-1cf94984bf76"
   },
   {
     title: "Building Scalable ETL Pipelines with Apache Airflow",
@@ -22,16 +23,18 @@ const blogPosts = [
     readTime: "10 min read",
     tags: ["ETL", "Airflow", "Data Pipeline"],
     category: "Tech",
-    image: "/placeholder.svg"
+    image: "/lovable-uploads/c4ba69f3-5302-4e60-b7c6-206b10a97f82.png",
+    url: "#"
   },
   {
-    title: "MLOps Best Practices for Production Deployments",
+    title: "MLOps Best Practices for Production Deployments with SageMaker and MLflow",
     excerpt: "Essential strategies for deploying and maintaining machine learning models in production. Includes monitoring, versioning, and CI/CD practices for ML systems.",
     date: "January 20, 2024",
     readTime: "15 min read",
-    tags: ["MLOps", "DevOps", "Machine Learning"],
+    tags: ["MLOps", "DevOps", "SageMaker", "MLflow"],
     category: "Tech",
-    image: "/placeholder.svg"
+    image: "/placeholder.svg",
+    url: "https://medium.com/@guntreddideepaksai/mlops-best-practices-for-production-deployments-with-sagemaker-and-mlflow-acd9e5949813"
   },
   {
     title: "Data Mesh Architecture in Practice",
@@ -40,16 +43,18 @@ const blogPosts = [
     readTime: "18 min read",
     tags: ["Data Architecture", "Data Mesh", "Enterprise"],
     category: "Architecture",
-    image: "/placeholder.svg"
+    image: "/placeholder.svg",
+    url: "#"
   },
   {
-    title: "Optimizing Snowflake Performance and Cost",
+    title: "Optimizing Snowflake Performance and Cost: Best Practices for 2025",
     excerpt: "Practical techniques for reducing Snowflake compute costs while maintaining query performance. Includes clustering strategies, warehouse sizing, and query optimization.",
     date: "November 5, 2023",
     readTime: "8 min read",
     tags: ["Snowflake", "Optimization", "Cost Management"],
     category: "Tech",
-    image: "/placeholder.svg"
+    image: "/lovable-uploads/7b2f89b5-b930-47ee-ae2f-0e644399a6ab.png",
+    url: "https://medium.com/@guntreddideepaksai/optimizing-snowflake-performance-and-cost-best-practices-for-2025-80a96525308a"
   },
   {
     title: "Real-time Analytics with Apache Kafka and Stream Processing",
@@ -58,7 +63,8 @@ const blogPosts = [
     readTime: "14 min read",
     tags: ["Kafka", "Stream Processing", "Real-time"],
     category: "Tech",
-    image: "/placeholder.svg"
+    image: "/lovable-uploads/965b2526-b2ee-45cd-9c52-1ffb6c9ea918.png",
+    url: "#"
   }
 ];
 
@@ -141,7 +147,15 @@ export const BlogSection = () => {
             >
               <Card className="h-full group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border-0 shadow-lg overflow-hidden">
                 <div className="aspect-video bg-gradient-to-br from-purple-500 to-pink-500 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-black/20" />
+                  {post.image !== "/placeholder.svg" ? (
+                    <img 
+                      src={post.image} 
+                      alt={post.title}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 bg-black/20" />
+                  )}
                   <div className="absolute bottom-4 left-4">
                     <Badge className="bg-white/20 text-white border-white/30">
                       {post.category}
@@ -182,7 +196,7 @@ export const BlogSection = () => {
                     className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white"
                     asChild
                   >
-                    <a href="https://medium.com/@guntreddideepaksai/event-driven-machine-learning-pipelines-with-kafka-and-feature-stores-1cf94984bf76" target="_blank" rel="noopener noreferrer">
+                    <a href={post.url} target="_blank" rel="noopener noreferrer">
                       Read Article
                     </a>
                   </Button>

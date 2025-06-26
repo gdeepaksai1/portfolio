@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Mail, Phone, Send, Linkedin, MessageSquare, CheckCircle, Calendar, User, Briefcase } from "lucide-react";
+import { Mail, Phone, Send, Linkedin, MessageSquare, User, Briefcase } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 export const Contact = () => {
@@ -58,7 +58,8 @@ export const Contact = () => {
       href: "mailto:guntreddideepaksai@gmail.com",
       description: "Primary contact method",
       gradient: "from-cyan-500/20 to-blue-500/20",
-      hoverColor: "hover:border-cyan-500/50"
+      iconColor: "text-cyan-400 group-hover:text-cyan-300",
+      borderColor: "hover:border-cyan-500/50"
     },
     {
       icon: Phone,
@@ -67,7 +68,8 @@ export const Contact = () => {
       href: "tel:+14028194838",
       description: "Available Mon-Fri, 9 AM - 6 PM CST",
       gradient: "from-violet-500/20 to-purple-500/20",
-      hoverColor: "hover:border-violet-500/50"
+      iconColor: "text-violet-400 group-hover:text-violet-300",
+      borderColor: "hover:border-violet-500/50"
     },
     {
       icon: Linkedin,
@@ -76,7 +78,8 @@ export const Contact = () => {
       href: "https://www.linkedin.com/in/deepak-sai-guntreddi-5a37951ab/",
       description: "Professional networking",
       gradient: "from-blue-500/20 to-indigo-500/20",
-      hoverColor: "hover:border-blue-500/50"
+      iconColor: "text-blue-400 group-hover:text-blue-300",
+      borderColor: "hover:border-blue-500/50"
     }
   ];
 
@@ -239,13 +242,13 @@ export const Contact = () => {
                 {contactInfo.map((item, index) => (
                   <div
                     key={index}
-                    className={`group cursor-pointer hover:bg-slate-800/30 p-4 rounded-xl transition-all duration-300 border border-transparent ${item.hoverColor} relative overflow-hidden`}
+                    className={`group cursor-pointer hover:bg-slate-800/30 p-4 rounded-xl transition-all duration-300 border border-transparent ${item.borderColor} relative overflow-hidden`}
                   >
                     <div className={`absolute inset-0 bg-gradient-to-r ${item.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
                     
                     <div className="relative z-10 flex items-start gap-4">
                       <div className="p-2 bg-slate-800/50 rounded-lg group-hover:scale-110 transition-transform duration-300">
-                        <item.icon className="w-5 h-5 text-cyan-400" />
+                        <item.icon className={`w-5 h-5 ${item.iconColor}`} />
                       </div>
                       <div className="flex-1">
                         <p className="text-sm text-slate-400 mb-1">{item.label}</p>
@@ -262,43 +265,6 @@ export const Contact = () => {
                     </div>
                   </div>
                 ))}
-              </CardContent>
-            </Card>
-
-            {/* Response Time Card */}
-            <Card className="bg-gradient-to-br from-green-500/10 to-emerald-500/10 border-green-500/30 backdrop-blur-sm">
-              <CardContent className="p-6">
-                <div className="flex items-start gap-3">
-                  <div className="p-2 bg-green-500/20 rounded-lg">
-                    <CheckCircle className="w-5 h-5 text-green-400" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-slate-100 mb-2">Quick Response</h3>
-                    <p className="text-slate-300 text-sm mb-3">
-                      I typically respond to messages within 24 hours. For urgent matters, feel free to reach out via LinkedIn.
-                    </p>
-                    <div className="flex items-center gap-2 text-xs text-green-400">
-                      <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                      Currently available
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Calendar Integration Hint */}
-            <Card className="bg-slate-900/80 border-slate-700/50 backdrop-blur-sm hover:border-violet-500/50 transition-all duration-500">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <Calendar className="w-5 h-5 text-violet-400" />
-                  <h3 className="text-lg font-semibold text-slate-100">Schedule a Call</h3>
-                </div>
-                <p className="text-slate-300 text-sm mb-4">
-                  Prefer a video call? Let's schedule a conversation that works for both of us.
-                </p>
-                <Button variant="outline" className="w-full border-violet-500/50 text-violet-300 hover:bg-violet-500/20 hover:border-violet-400">
-                  Mention in your message
-                </Button>
               </CardContent>
             </Card>
           </div>

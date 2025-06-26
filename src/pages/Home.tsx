@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Database, Cloud, BarChart3, Download, Sparkles } from "lucide-react";
+import { ArrowRight, Database, Cloud, BarChart3, Sparkles } from "lucide-react";
 import { TypingAnimation } from "@/components/TypingAnimation";
 
 export const Home = () => {
@@ -91,19 +91,6 @@ export const Home = () => {
                 Get In Touch
                 <Sparkles className="ml-2 w-5 h-5 group-hover:rotate-12 transition-transform duration-300" />
               </Link>
-            </Button>
-
-            <Button 
-              variant="outline" 
-              size="lg" 
-              className="border-violet-600 text-violet-200 hover:bg-violet-800/20 hover:border-violet-400 hover:text-violet-400 hover:scale-105 transition-all duration-300 px-8 py-6 text-lg backdrop-blur-sm group"
-              onClick={() => {
-                // Placeholder for resume download
-                console.log("Resume download clicked");
-              }}
-            >
-              <Download className="mr-2 w-5 h-5 group-hover:translate-y-1 transition-transform duration-300" />
-              Resume
             </Button>
           </div>
 
