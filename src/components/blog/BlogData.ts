@@ -7,7 +7,7 @@ export const blogPosts = [
     readTime: "12 min read",
     tags: ["Machine Learning", "Kafka", "Data Engineering"],
     category: "Tech",
-    image: "/lovable-uploads/71a7f0a2-f035-40db-ac6f-05b74791045c.png",
+    image: "/lovable-uploads/a0ac0500-8bac-4cec-a228-d3a00ff871f7.png",
     url: "https://medium.com/@guntreddideepaksai/event-driven-machine-learning-pipelines-with-kafka-and-feature-stores-1cf94984bf76"
   },
   {
@@ -17,7 +17,7 @@ export const blogPosts = [
     readTime: "10 min read",
     tags: ["ETL", "Airflow", "Data Pipeline"],
     category: "Tech",
-    image: "/lovable-uploads/c4ba69f3-5302-4e60-b7c6-206b10a97f82.png",
+    image: "/lovable-uploads/4c15509d-5b26-4ed9-945c-ee3bc469b4f5.png",
     url: "#"
   },
   {
@@ -37,7 +37,7 @@ export const blogPosts = [
     readTime: "18 min read",
     tags: ["Data Architecture", "Data Mesh", "Enterprise"],
     category: "Architecture",
-    image: "/lovable-uploads/af312b3e-427a-45a6-abea-eab9abd9e425.png",
+    image: "/lovable-uploads/adf23859-c5b4-4cf6-85bc-d239dcb66ca8.png",
     url: "https://medium.com/@guntreddideepaksai/data-mesh-architecture-in-practice-bridging-strategy-and-engineering-102cc5f83778"
   },
   {
@@ -47,7 +47,7 @@ export const blogPosts = [
     readTime: "8 min read",
     tags: ["Snowflake", "Optimization", "Cost Management"],
     category: "Tech",
-    image: "/lovable-uploads/7b2f89b5-b930-47ee-ae2f-0e644399a6ab.png",
+    image: "/lovable-uploads/71615688-1a5b-4047-9484-85f886bdc7af.png",
     url: "https://medium.com/@guntreddideepaksai/optimizing-snowflake-performance-and-cost-best-practices-for-2025-80a96525308a"
   },
   {
@@ -57,7 +57,7 @@ export const blogPosts = [
     readTime: "14 min read",
     tags: ["Kafka", "Stream Processing", "Real-time"],
     category: "Tech",
-    image: "/lovable-uploads/965b2526-b2ee-45cd-9c52-1ffb6c9ea918.png",
+    image: "/lovable-uploads/5dea45f8-4ebe-4aad-a0e6-b1c868462382.png",
     url: "#"
   }
 ];

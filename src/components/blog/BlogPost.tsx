@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -22,6 +21,8 @@ interface BlogPostProps {
 }
 
 export const BlogPostCard = ({ post, index, isVisible }: BlogPostProps) => {
+  console.log(`Rendering blog post: ${post.title} with image: ${post.image}`);
+  
   return (
     <div
       className={`transition-all duration-700 transform ${
@@ -33,19 +34,16 @@ export const BlogPostCard = ({ post, index, isVisible }: BlogPostProps) => {
     >
       <Card className="h-full group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border-0 shadow-lg overflow-hidden">
         <div className="aspect-video bg-gradient-to-br from-purple-500 to-pink-500 relative overflow-hidden">
-          {post.image !== "/placeholder.svg" ? (
-            <img 
-              src={post.image} 
-              alt={post.title}
-              className="w-full h-full object-cover"
-              onError={(e) => {
-                console.log(`Failed to load image: ${post.image}`);
-                e.currentTarget.style.display = 'none';
-              }}
-            />
-          ) : (
-            <div className="absolute inset-0 bg-black/20" />
-          )}
+          <img 
+            src={post.image} 
+            alt={post.title}
+            className="w-full h-full object-cover"
+            onLoad={() => console.log(`Image loaded successfully: ${post.image}`)}
+            onError={(e) => {
+              console.error(`Failed to load image: ${post.image}`);
+              e.currentTarget.style.display = 'none';
+            }}
+          />
           <div className="absolute bottom-4 left-4">
             <Badge className="bg-white/20 text-white border-white/30">
               {post.category}
