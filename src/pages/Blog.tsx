@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -38,7 +37,8 @@ const blogPosts = [
     readTime: "18 min read",
     tags: ["Data Architecture", "Data Mesh", "Enterprise"],
     category: "Cloud",
-    url: "#"
+    url: "https://medium.com/@guntreddideepaksai/data-mesh-architecture-in-practice-bridging-strategy-and-engineering-102cc5f83778",
+    image: "/lovable-uploads/af312b3e-427a-45a6-abea-eab9abd9e425.png"
   },
   {
     title: "Optimizing Snowflake Performance and Cost: Best Practices for 2025",
@@ -158,6 +158,10 @@ export const Blog = () => {
                       src={post.image} 
                       alt={post.title}
                       className="w-full h-full object-cover"
+                      onError={(e) => {
+                        console.log(`Failed to load image: ${post.image}`);
+                        e.currentTarget.style.display = 'none';
+                      }}
                     />
                   ) : (
                     <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-violet-500/10" />
