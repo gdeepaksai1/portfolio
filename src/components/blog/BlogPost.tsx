@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -34,16 +35,22 @@ export const BlogPostCard = ({ post, index, isVisible }: BlogPostProps) => {
     >
       <Card className="h-full group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border-0 shadow-lg overflow-hidden">
         <div className="aspect-video bg-gradient-to-br from-purple-500 to-pink-500 relative overflow-hidden">
-          <img 
-            src={post.image} 
-            alt={post.title}
-            className="w-full h-full object-cover"
-            onLoad={() => console.log(`Image loaded successfully: ${post.image}`)}
-            onError={(e) => {
-              console.error(`Failed to load image: ${post.image}`);
-              e.currentTarget.style.display = 'none';
-            }}
-          />
+          {post.image && (
+            <img 
+              src={post.image} 
+              alt={post.title}
+              className="w-full h-full object-cover"
+              loading="eager"
+              onLoad={() => console.log(`Image loaded successfully: ${post.image}`)}
+              onError={(e) => {
+                console.error(`Failed to load image: ${post.image}`);
+                console.error('Image error event:', e);
+                // Don't hide the image, show a fallback instead
+                const target = e.currentTarget as HTMLImageElement;
+                target.src = '/placeholder.svg';
+              }}
+            />
+          )}
           <div className="absolute bottom-4 left-4">
             <Badge className="bg-white/20 text-white border-white/30">
               {post.category}

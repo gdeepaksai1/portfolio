@@ -61,3 +61,7 @@ export const blogPosts = [
     url: "#"
   }
 ];
+
+// Log the blog posts data for debugging
+console.log('Blog posts data:', blogPosts);
+console.log('Image paths:', blogPosts.map(post => ({ title: post.title, image: post.image })));
