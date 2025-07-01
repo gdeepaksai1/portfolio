@@ -11,16 +11,6 @@ export const blogPosts = [
     url: "https://medium.com/@guntreddideepaksai/event-driven-machine-learning-pipelines-with-kafka-and-feature-stores-1cf94984bf76"
   },
   {
-    title: "Building Scalable ETL Pipelines with Apache Airflow",
-    excerpt: "Deep dive into designing robust, scalable ETL pipelines using Apache Airflow. Covers best practices for error handling, monitoring, and performance optimization.",
-    date: "March 15, 2024",
-    readTime: "10 min read",
-    tags: ["ETL", "Airflow", "Data Pipeline"],
-    category: "Tech",
-    image: "/lovable-uploads/4c15509d-5b26-4ed9-945c-ee3bc469b4f5.png",
-    url: "#"
-  },
-  {
     title: "MLOps Best Practices for Production Deployments with SageMaker and MLflow",
     excerpt: "Essential strategies for deploying and maintaining machine learning models in production. Includes monitoring, versioning, and CI/CD practices for ML systems.",
     date: "January 20, 2024",
@@ -49,16 +39,6 @@ export const blogPosts = [
     category: "Tech",
     image: "/lovable-uploads/71615688-1a5b-4047-9484-85f886bdc7af.png",
     url: "https://medium.com/@guntreddideepaksai/optimizing-snowflake-performance-and-cost-best-practices-for-2025-80a96525308a"
-  },
-  {
-    title: "Real-time Analytics with Apache Kafka and Stream Processing",
-    excerpt: "Building real-time analytics systems using Kafka Streams and Apache Flink. Covers event sourcing, windowing, and stateful stream processing patterns.",
-    date: "October 18, 2023",
-    readTime: "14 min read",
-    tags: ["Kafka", "Stream Processing", "Real-time"],
-    category: "Tech",
-    image: "/lovable-uploads/5dea45f8-4ebe-4aad-a0e6-b1c868462382.png",
-    url: "#"
   }
 ];
 
